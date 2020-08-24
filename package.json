@@ -1,0 +1,28 @@
+{
+  "name": "next-styled-components-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "build-export": "npm run build && npm run export",
+    "lint": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "next": "9.5.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "@types/styled-components": "^5.1.2",
+    "babel-plugin-styled-components": "^1.11.1",
+    "file-loader": "^6.0.0",
+    "imagemin-webp-webpack-plugin": "^3.3.2",
+    "typescript": "^4.0.2"
+  }
+}
