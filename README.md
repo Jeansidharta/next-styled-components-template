@@ -6,6 +6,7 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 - [`styled-components`](https://styled-components.com/)
 - [`typescript`](https://www.typescriptlang.org/)
 - [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
+- [`husky`](https://github.com/typicode/husky)
 
 ## What is this template optimal for?
 
@@ -147,6 +148,10 @@ Images are large. They are very large. Most of a page's size is in it's images. 
 This webpack plugin will minify all `jpeg`, `png` and `gif` images being used in your application, and create a copy of it in the `webp` format. This will help your user to load the minimum ammount of data possible, while all we have to do is throw the images in the applications, without having to worry about optimization.
 
 Since this plugin only transforms the image, I had to install the `file-loader` plugin to actually load the images to webpack.
+
+### `husky`
+
+This one is used primarily to prevent incorrect code to be pushed to your remote repository. It's very useful because `next` production builds will fail if there are any typing errors, while development builds will work fine, so if you have some sort of Continuous Integration setupwith your repository, when you pushed your code to the master branch, it could fail to build in the last step because of some unseen typing error.
 
 ## What about these packages?
 

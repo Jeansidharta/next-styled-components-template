@@ -2,6 +2,11 @@
   "name": "next-styled-components-template",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,6 +27,7 @@
     "@types/styled-components": "^5.1.2",
     "babel-plugin-styled-components": "^1.11.1",
     "file-loader": "^6.0.0",
+    "husky": "^4.2.5",
     "imagemin-webp-webpack-plugin": "^3.3.2",
     "typescript": "^4.0.2"
   }
