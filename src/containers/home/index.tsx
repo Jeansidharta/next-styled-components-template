@@ -15,6 +15,8 @@ export default function Home() {
 		<>
 			<Head>
 				<title>My Home Page Title</title>
+				{/* TODO - add real url */}
+				<link rel="canonical" href="https://my-domain.com/home"/>
 			</Head>
 			<Navbar />
 			<Main>
