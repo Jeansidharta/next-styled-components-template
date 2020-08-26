@@ -9,6 +9,7 @@
 
 import React from 'react';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import ImageURLs from '../images';
 
 const hasWebpCounterpartRegex = /\.(png|jpe?g)$/;
 
@@ -56,7 +57,7 @@ const BaseImage = React.forwardRef<HTMLPictureElement, BaseImageProps>(({
 const Images = {
 	/** Here's an image import example. Just copy and paste it with the correct import path. */
 	main: styled(BaseImage).attrs(({ alt }) => ({
-		src: require('../images/logo.svg'),
+		src: ImageURLs.logo,
 		alt: alt || 'My Company Logo',
 	}))``,
 }

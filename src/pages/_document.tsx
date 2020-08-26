@@ -31,7 +31,8 @@ export default class MyDocument extends Document {
 
 	render () {
 		return (
-			<Html lang='pt-br'>
+			// The `og` prefix is to allow for OpenGraph tools to read info from the site
+			<Html lang='pt-br' prefix="og: http://ogp.me/ns#">
 			<Head>
 				{/* TODO - Set custom page description */}
 				<meta name="description" content="My personal description" />

@@ -6,6 +6,7 @@ import Head from 'next/head';
 import FilledThemeProvider from '../theme';
 import Providers from '../contexts';
 import AppContainer from '../containers';
+import ImageURLs from '../images';
 
 type MyAppProps = React.PropsWithoutRef<{
 	Component: any,
@@ -32,6 +33,14 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 				{/* Favicon related stuff */}
 				<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+				{/* These meta tags are related to OpenGraph, which allows for better webpage cards. */}
+				{/* TODO - put real content here */}
+				<meta property='og:title' content='My page title' />
+				<meta property='og:site-name' content='My page site name' />
+				<meta property='og:description' content='My page description' />
+				<meta property='og:image' content={`${ImageURLs.logoPng}`} />
+				{/* <meta property='og:url' content={deployedUrl + '/'} /> */}
 			</Head>
 
 			<FilledThemeProvider>
