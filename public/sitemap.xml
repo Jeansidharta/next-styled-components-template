@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Visis https://www.sitemaps.org/protocol.html for more information about how to build sitemaps -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<!-- TODO - add my actual URLs -->
+		<loc>https://my-url.com/</loc>
+		<priority>1</priority>
+	</url>
+</urlset>
