@@ -13,7 +13,8 @@
     "start": "next start",
     "export": "next export",
     "build-export": "npm run build && npm run export",
-    "lint": "tsc --noEmit -p ."
+    "lint": "tsc --noEmit -p .",
+    "pm2": "npm run build-export && pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "next": "^10.0.1",
