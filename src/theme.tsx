@@ -2,7 +2,7 @@
 *                         What is this file?                               *
 *                                                                          *
 * This file is responsible for declaring the styled-components theme       *
-* variable.                                                                *
+* variable. It also provides the typings for the theme                     *
 *                                                                          *
 ***************************************************************************/
 
@@ -90,8 +90,8 @@ declare module "styled-components" {
 					strong: HoverableShadow,
 				},
 			},
-			/** Button shadows are shadows for clickable elements. They are usually more
-			* dynamic and more noticeable. */
+			/** Button shadows are shadows for clickable elements. They are usually
+			* sharper and more dynamic. */
 			button: {
 				small: HoverableShadow,
 				medium: HoverableShadow,
@@ -176,7 +176,7 @@ const theme: DefaultTheme = {
 	font: {
 		size: {
 			large: '24px',
-			medium: '16px',
+			medium: '16px', // Default font size.
 			small: '14px',
 		}
 	},
