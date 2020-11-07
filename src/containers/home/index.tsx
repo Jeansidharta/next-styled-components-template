@@ -2,7 +2,6 @@ import Head from 'next/head'
 import styled from 'styled-components';
 import Navbar from '../../components/layout/navbar';
 import Footer from '../../components/layout/footer';
-import ImageURLs from '../../images';
 
 const Main = styled.div`
 	width: 100%;
@@ -19,7 +18,7 @@ const JSONLD = `{
 	"@context": "http://schema.org/",
 	"@type": "Thing",
 	"name": "your site thing",
-	"image": "${ImageURLs.logoPng}"
+	"image": "/images/logo.png"
 }`;
 
 export default function Home() {

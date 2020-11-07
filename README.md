@@ -5,7 +5,6 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 - [`next`](https://nextjs.org/) (and `react`, as consequence)
 - [`styled-components`](https://styled-components.com/)
 - [`typescript`](https://www.typescriptlang.org/)
-- [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
 - [`husky`](https://github.com/typicode/husky)
 
 ## What is this template optimal for?
@@ -140,14 +139,6 @@ With `styled-components` not only do you not rely on matching CSS classes anymor
 However, `styled-components` comes with a great cost: since it applies styles through javascript, your application would only be styled when your javascript finishes loading, compiling and executing... Or does it? Since we are using `next`, we can actually render the styles on the server, and inline the critial parts on the HTML file! The greatest technical flaw of CSS-in-JS solutions is bypassed by `next` through SSG (static site generation)! It's actually better performance-wise for `next` to use `styled-components` over vanilla CSS, because Webpack can detect all of your page's styling dependencies, and only load the important stuff that you need right now! it's automatically code-splitting the styles for you.
 
 I recognize there are some personal preferences in the community about CSS-in-JS soltuons, but with SSG, I don't have a very reasonble argument against this kind of technology other than architectural preference.
-
-### `imagemin-webp-webpack-plugin`
-
-Images are large. They are very large. Most of a page's size is in it's images. Therefore, optimizing images is extremely important for keeping your page fast, and this is exactly what this dependency does.
-
-This webpack plugin will minify all `jpeg`, `png` and `gif` images being used in your application, and create a copy of it in the `webp` format. This will help your user to load the minimum ammount of data possible, while all we have to do is throw the images in the applications, without having to worry about optimization.
-
-Since this plugin only transforms the image, I had to install the `file-loader` plugin to actually load the images to webpack.
 
 ### `husky`
 

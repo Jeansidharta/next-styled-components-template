@@ -6,7 +6,6 @@ import Head from 'next/head';
 import FilledThemeProvider from '../theme';
 import Providers from '../contexts';
 import AppContainer from '../containers';
-import ImageURLs from '../images';
 
 type MyAppProps = React.PropsWithoutRef<{
 	Component: any,
@@ -39,7 +38,7 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 				<meta property='og:title' content='My page title' />
 				<meta property='og:site-name' content='My page site name' />
 				<meta property='og:description' content='My page description' />
-				<meta property='og:image' content={`${ImageURLs.logoPng}`} />
+				<meta property='og:image' content={`/images/logo.png`} />
 				{/* <meta property='og:url' content={deployedUrl + '/'} /> */}
 			</Head>
 
