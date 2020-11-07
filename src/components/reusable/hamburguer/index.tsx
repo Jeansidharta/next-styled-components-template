@@ -33,6 +33,9 @@ type HamburguerProps = React.PropsWithRef<{
 
 type HamburguerComponent = React.ForwardRefRenderFunction<HTMLButtonElement, HamburguerProps>;
 
+/**
+* This is a simple hamburguer, with an opening and closing animation.
+*/
 const Hamburguer: HamburguerComponent = ({
 	onOpen = (()=>{}),
 	onClose = (()=>{}),

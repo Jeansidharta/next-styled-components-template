@@ -28,6 +28,10 @@ type FloatIconButtonProps = React.PropsWithoutRef<{
 
 type FloatIconButtonComponent = React.FunctionComponent<FloatIconButtonProps>;
 
+/**
+* This is more of a visual component. It will render the `imageElem` prop on it's center,
+* with some shadow around it. It's supposed to be a simple icon.
+*/
 const FloatIconButton: FloatIconButtonComponent = ({ imageElem, ref, ...props }) => {
 	return (
 		<Root {...props}>

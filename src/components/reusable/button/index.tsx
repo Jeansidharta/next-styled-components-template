@@ -35,15 +35,30 @@ const Root = styled.button<{
 `;
 
 type ButtonProps = React.PropsWithoutRef<{
+	/**
+	* The contents that will be rendered inside the button.
+	*/
 	content: React.ReactNode,
+
+	/**
+	* How much will the button's size increase/decrease when the user hovers/clicks
+	* on it.
+	*/
 	hoverScaleOffset?: number,
+
 	backgroundColor?: ColorDescriptor,
+
 	textColor?: ColorDescriptor,
+
+	/**
+	* If true, the button's width will be set to `100%`.
+	*/
 	fullWidth?: boolean,
 }> & React.ComponentProps<'button'>;
 
 type ButtonComponent = React.FunctionComponent<ButtonProps>;
 
+/** This is the application's default button. */
 const Button: ButtonComponent = ({
 	content,
 	fullWidth = false,

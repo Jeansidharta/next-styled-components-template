@@ -27,18 +27,20 @@ const Circle = styled.circle<{
 `;
 
 type SpinnerProps = React.PropsWithRef<{
-	/** The size of the spinner */
+	/** The radius of the spinner in pixels. Default is 40. */
 	size?: number,
-	/** The width of the spinner's line */
+	/** The width (thickness) of the spinner's outline. Default is 2. */
 	strokeWidth?: number,
-	/** The spinner's color */
+	/** The spinner's color. Default is black. */
 	color?: string,
 }> & React.ComponentProps<'svg'>;
 
 type SpinnerComponent = React.FunctionComponent<SpinnerProps>;
 
-/** This is a spinner component. It is often use to indicate to the user that a
-request is being made. */
+/**
+* This is a spinner component. It is often use to indicate to the user that a
+* server request is being made.
+*/
 const Spinner: SpinnerComponent = ({
 	size = 40,
 	strokeWidth = 2,

@@ -6,13 +6,20 @@ const Root = styled.div`
 `;
 
 type SlideInProps = React.PropsWithoutRef<{
+	/** The animation duration. */
 	duration?: number,
+	/** The offset that the component will move when sliding. */
 	offset?: number,
+	/** The direction the animation will occur. */
 	direction: 'up' | 'down' | 'left' | 'right',
 }>;
 
 type SlideInComponent = React.FunctionComponent<SlideInProps>;
 
+/**
+* This component will be transparent on it's first render, and will slowly slide
+* in and become opaque. It's an animation componente.
+*/
 const SlideIn: SlideInComponent = ({ duration = 2000, direction, offset = 100, children }) => {
 	const rootRef = React.useRef<HTMLDivElement>(null);
 
