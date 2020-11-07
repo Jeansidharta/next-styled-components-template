@@ -150,4 +150,10 @@ Here are some packages that I consciously opted-out of, and the reasons why:
 
 - **Material UI**: I like this library a lot, but I feel like it's components weigh a lot on the final bundle size. Also, your designer has to be aware that you are using Material UI, or you may end up having to fight the library to achieve what the designer gave you. I feel like this limits the app's design too much, and would rather create my own components.
 
-Other packages are either too small for me to mention, too specific to be added to a template, or I've never heard of them.
+- **GraphQL**: There are two reasons why I didn't add GraphQL to this template. The first is because this template is more focused on landing pages, and it's somewhat rare to need server communication in a landing-page. The second reason is because I personally dislike GraphQL. A lot. I've only had bad experiences with this technology, and would rather use something else.
+
+- **eslint or any linter**: I don't like linters. It's a personal opinion, but I really don't. Since this template is around my personal preferences, I've chosen not to add any. The project has a very basic linting script, but it's simply a check for typescript errors.
+
+Other packages are either too small for me to mention, too specific to be added to a template, or I've never heard of them (or forgot about them).
+
+Do remember that if you're using this template you can add whatever library you want. These are all my personal picks, and I won't hate you for not sticking to them :)
