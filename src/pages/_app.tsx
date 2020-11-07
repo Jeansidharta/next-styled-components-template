@@ -5,7 +5,7 @@ import Head from 'next/head';
 // Misc
 import FilledThemeProvider from '../theme';
 import Providers from '../contexts';
-import AppContainer from '../containers';
+import AppContainer from '../containers/_app';
 
 type MyAppProps = React.PropsWithoutRef<{
 	Component: any,

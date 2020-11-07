@@ -5,8 +5,9 @@ module.exports = {
 	) {
 		return {
 		...defaultPathMap,
+		// Add your reroutes here. Example:
 		// Reroutes the '/' path to '/home'
-		'/': { page: '/home' },
+		// '/': { page: '/home' },
 		}
 	},
 }
