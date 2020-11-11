@@ -34,7 +34,11 @@ Always remember this is not set in stone, and is simply the best way I've develo
 
 These are some things you should know when using this template to avoid some weird bugs, or unoptimal performance.
 
-- the `src/pages/_app.tsx` and `src/pages/_document.tsx` files should not contain any styled-components component definition. Doing so will throw the "`class names don't match`" console warning, which could potentialy cause some very hard to find bugs, so just avoid it. I'm not exactly sure why this happens, but I think it has someting to do with how `styled-components` compiles when using SSR (server-side rendering).
+- All `jpeg`, `png` and `gif` images have to be imported using the `require` function, and **NOT** through the `public` folder. This is to ensure the images are properly optimized. Read more about this in my section about `imagemin-webp-webpack-plugin`.
+  - `svg` images can be imported both through `require` or through the public folder, since they are not optimized, but I'd suggest always using the `require` function for consistency
+  - If you want to support other image extensions, you'll have to change a few things in the `next.config.js` file. There should be enough comments in there to guide you in this mission. Webpack is kind of a nightmare (for me), so Good Luck.
+
+- the `src/pages/_app.tsx` and `src/pages/_document.tsx` files should not contain any styled-components component definition. Doing so will throw the `class names don't match` console warning, which could potentialy cause some very hard to find bugs, so just avoid it. I'm not exactly sure why this happens, but I think it has someting to do with how `styled-components` compiles when using SSR (server-side rendering).
   - You can still import files that have `styled-components` component declarations without any warnings
 
 ## Why these libraries?
