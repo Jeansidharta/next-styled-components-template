@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
 
+import Images from '../../../constants/images';
 import NavLink from './nav-link';
 
 const Root = styled.div`
@@ -15,7 +15,7 @@ const Root = styled.div`
 	padding: 8px 32px;
 `;
 
-const Logo = styled(Image).attrs(() => ({ layout: 'fill' }))`
+const Logo = styled(Images.main)`
 	height: 100%;
 	width: auto;
 	cursor: pointer;
@@ -30,9 +30,6 @@ const LinksContainer = styled.ul`
 
 const Anchor = styled.a.attrs({ href: '#' })`
 	max-width: 80px;
-	position: relative;
-	width: 100%;
-	height: 100%;
 `;
 
 type NavbarProps = React.PropsWithoutRef<{}>;
@@ -53,7 +50,7 @@ const Navbar: NavbarComponent = () => {
 		<Root>
 			<Link href='/home'>
 				<Anchor>
-					<Logo src="/images/logo.svg" />
+					<Logo />
 				</Anchor>
 			</Link>
 			<LinksContainer ref={linksContainerRef}>
