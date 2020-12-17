@@ -13,6 +13,7 @@
     "start": "next start",
     "export": "next export",
     "build-export": "npm run build && npm run export",
+    "serve": "npm run build-export && serve out",
     "lint": "tsc --noEmit -p .",
     "pm2": "npm run build-export && pm2 start ecosystem.config.js"
   },
@@ -30,6 +31,7 @@
     "file-loader": "^6.2.0",
     "husky": "^4.3.6",
     "imagemin-webp-webpack-plugin": "^3.3.3",
+    "serve": "^11.3.2",
     "typescript": "^4.1.3"
   }
 }
