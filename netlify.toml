@@ -4,13 +4,3 @@
 # Plugin for faster nextjs builds
 [[plugins]]
 package = "netlify-plugin-cache-nextjs"
-
-# Plugin to prevent code from reaching production if it scores below a threshold in chrome's lighthouse.
-[[plugins]]
-package = "@netlify/plugin-lighthouse"
-
-# optional, fails build when a category is below a threshold
-[plugins.inputs.thresholds]
-	accessibility = 1.0
-	best-practices = 1.0
-	seo = 1.0

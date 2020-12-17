@@ -7,6 +7,7 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 - [`typescript`](https://www.typescriptlang.org/)
 - [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
 - [`husky`](https://github.com/typicode/husky)
+- [`lighthouse`](https://github.com/GoogleChrome/lighthouse) for quality control of the whole page.
 
 ## What is this template optimal for?
 
@@ -40,6 +41,23 @@ These are some things you should know when using this template to avoid some wei
 
 - the `src/pages/_app.tsx` and `src/pages/_document.tsx` files should not contain any styled-components component definition. Doing so will throw the `class names don't match` console warning, which could potentialy cause some very hard to find bugs, so just avoid it. I'm not exactly sure why this happens, but I think it has someting to do with how `styled-components` compiles when using SSR (server-side rendering).
   - You can still import files that have `styled-components` component declarations without any warnings
+
+## Npm scripts
+
+This project has the following scripts:
+
+- `dev`: Starts the dev server. This is what you'll be primarily doing.
+- `build`: Builds the website, ready for server-side rendering.
+- `start`: Starts the server-side rendering server, that will serve the conntent built by the `build` command. In order for the `start` command to work, you need to run the `build` command first.
+- `export`: Runs the static-site generator. It'll generate static HTML files based on your build. In order for the `export` command to work, you need to run the `build` command first.
+- `build-export`: both builds and exports the website.
+- `serve`: This onde will run the `build-export` command, and will serve the result from a static content server.
+- `lint`: Checks for typescript errors.
+- `pm2`: This will register the website on the pm2 program. If you're not using pm2, you can remove this.
+
+Also, any time you push code to any remote, the `lint` script will be run, and if it fails, the code won't actually be pushed.
+
+If you try to specificaly push to the Master branch, a Chrome's lighthouse audit will be performed on the website, making sure any code that is being pushed to the Master branch is not of substandard quality.
 
 ## Why these libraries?
 
@@ -154,6 +172,14 @@ Since this plugin only transforms the image, I had to install the `file-loader` 
 ### `husky`
 
 This one is used primarily to prevent incorrect code to be pushed to your remote repository. It's very useful because `next` production builds will fail if there are any typing errors, while development builds will work fine.So if you have some sort of Continuous Integration setup with your repository, when pushing your code to the master branch, it could fail to build in the last step because of some unseen typing warning.
+
+### `lighthouse`
+
+Google's lighthouse auditing is very good at catching easy to spot problems with the page, and is generally a good way of telling if you've messed something up.
+
+However, auditing a webpage may be very easy to do, but is also very hard to remember. It can also be annoying if you have to build the app, serve it, open in a browser and audit it manually. Therefore, this is a perfect task to be automated, and is exactly what this library is here for.
+
+It's not that simple though. I had to write a script on my own to run the auditing logic, and it was no easy task, but it sure has been very useful to me, and I hope it'll be of use to you.
 
 ## What about these packages?
 
