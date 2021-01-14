@@ -15,7 +15,8 @@
     "build-export": "npm run build && npm run export",
     "serve": "npm run build-export && serve out",
     "lint": "tsc --noEmit -p .",
-    "pm2": "npm run build-export && pm2 start ecosystem.config.js"
+    "pm2": "npm run build-export && pm2 start ecosystem.config.js",
+    "upgrade": "npx npm-check-updates -u"
   },
   "dependencies": {
     "next": "^10.0.5",
