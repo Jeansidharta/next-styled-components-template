@@ -28,7 +28,7 @@ const LinksContainer = styled.ul`
 	display: flex;
 `;
 
-const Anchor = styled.a.attrs({ href: '#' })`
+const Anchor = styled.a.attrs({ href: `#` })`
 	max-width: 80px;
 `;
 
@@ -40,10 +40,10 @@ const Navbar: NavbarComponent = () => {
 	const linksContainerRef = React.useRef<HTMLUListElement>(null);
 
 	const links = [
-		{ idToFocus: 'about-us', text: 'About us' },
-		{ idToFocus: 'plans', text: 'Plans' },
-		{ idToFocus: 'team', text: 'Our team' },
-		{ idToFocus: 'contact', text: 'Contact' },
+		{ idToFocus: `about-us`, text: `About us` },
+		{ idToFocus: `plans`, text: `Plans` },
+		{ idToFocus: `team`, text: `Our team` },
+		{ idToFocus: `contact`, text: `Contact` },
 	];
 
 	return (
@@ -56,12 +56,11 @@ const Navbar: NavbarComponent = () => {
 			<LinksContainer ref={linksContainerRef}>
 				{links.map(link => <NavLink
 					idToFocus={link.idToFocus}
-					children={link.text}
 					key={link.text}
-				/>)}
+				>{link.text}</NavLink>)}
 			</LinksContainer>
 		</Root>
 	);
-}
+};
 
 export default Navbar;

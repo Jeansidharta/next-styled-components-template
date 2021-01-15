@@ -38,11 +38,11 @@ const NavLink: NavLinkComponent = ({
 }) => {
 	return (
 		<Root onClick={onClick} {...props}>
-			<Anchor href={'#'}>
+			<Anchor href='#'>
 				{children}
 			</Anchor>
 		</Root>
 	);
-}
+};
 
 export default NavLink;
