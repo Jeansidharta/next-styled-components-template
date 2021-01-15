@@ -779,7 +779,8 @@ module.exports = {
 		/** Validate spacing before closing bracket in JSX (fixable) */
 		'react/jsx-space-before-closing': [WARN, `always`],
 		/** Validate whitespace in and around the JSX opening and closing brackets (fixable) */
-		'react/jsx-tag-spacing': [OFF],
+		// DEPRECATED
+		// 'react/jsx-tag-spacing': [OFF],
 		/** Prevent React to be marked as unused */
 		'react/jsx-uses-react': [OFF],
 		/** Prevent variables used in JSX to be marked as unused */
