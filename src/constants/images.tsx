@@ -1,14 +1,15 @@
-/***************************************************************************
+/** *************************************************************************
 *                         What is this file?                               *
 *                                                                          *
 * This file contains all imports to all images, icons and etc... It has a  *
 * base component that all images should share, and has to organize all     *
 * images in a single export default object.                                *
 *                                                                          *
-***************************************************************************/
+************************************************************************** */
 
 import React from 'react';
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import type { FlattenSimpleInterpolation } from 'styled-components';
+import styled from 'styled-components';
 import ImageURLs from '../images';
 
 const hasWebpCounterpartRegex = /\.(png|jpe?g)$/;
@@ -16,7 +17,7 @@ const hasWebpCounterpartRegex = /\.(png|jpe?g)$/;
 const Picture = styled.picture<{ css?: FlattenSimpleInterpolation }>`
 	width: 100%;
 	height: 100%;
-	${({ css }) => css || ''};
+	${({ css }) => css || ``};
 `;
 
 const Image = styled.img<{ fit: string }>`
@@ -31,7 +32,8 @@ type BaseImageProps = React.PropsWithChildren<{
 	src: string,
 	alt: string,
 	css?: FlattenSimpleInterpolation,
-	fit?: 'contain' | 'cover' | 'fill' | 'inherit' | 'initial' | 'none' | 'revert' | 'scale-down' | 'unset',
+	fit?: 'contain' | 'cover' | 'fill' | 'inherit' | 'initial' | 'none' | 'revert' |
+	'scale-down' | 'unset',
 }> & Omit<React.ComponentProps<'picture'>, 'ref'>;
 
 /**
@@ -41,10 +43,11 @@ type BaseImageProps = React.PropsWithChildren<{
 const BaseImage = React.forwardRef<HTMLPictureElement, BaseImageProps>(({
 	src,
 	alt,
-	fit = 'contain',
+	fit = `contain`,
 	...props
 }, ref) => {
-	const webpSrc = src.match(hasWebpCounterpartRegex) ? src.replace(hasWebpCounterpartRegex, '.webp') : '';
+	const webpSrc = src.match(hasWebpCounterpartRegex) ?
+		src.replace(hasWebpCounterpartRegex, `.webp`) : ``;
 
 	return (
 		<Picture {...props} ref={ref}>
@@ -58,8 +61,8 @@ const Images = {
 	/** Here's an image import example. Just copy and paste it with the correct import path. */
 	main: styled(BaseImage).attrs(({ alt }) => ({
 		src: ImageURLs.logo,
-		alt: alt || 'My Company Logo',
+		alt: alt || `My Company Logo`,
 	}))``,
-}
+};
 
 export default Images;

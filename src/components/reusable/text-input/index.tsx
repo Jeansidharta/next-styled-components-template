@@ -10,7 +10,7 @@ const Root = styled.label`
 const Input = styled.input`
 `;
 
-const TextArea = styled(Input).attrs({ as: 'textarea' })`
+const TextArea = styled(Input).attrs({ as: `textarea` })`
 `;
 
 type TextInputProps = React.PropsWithoutRef<{
@@ -28,12 +28,11 @@ const TextInput: TextInputComponent = ({ label, ref, numberOfLines = 1, ...props
 	return (
 		<Root {...props}>
 			{label}
-			{ numberOfLines === 1
-				? <Input />
-				: <TextArea />
-			}
+			{ numberOfLines === 1 ?
+				<Input /> :
+				<TextArea />}
 		</Root>
 	);
-}
+};
 
 export default TextInput;

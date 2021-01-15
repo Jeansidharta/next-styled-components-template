@@ -23,7 +23,7 @@ const Root = styled.button`
 `;
 
 type FloatIconButtonProps = React.PropsWithoutRef<{
-	imageElem: JSX.Element,
+	imageElem: React.ReactNode,
 }> & React.ComponentProps<'button'>;
 
 type FloatIconButtonComponent = React.FunctionComponent<FloatIconButtonProps>;
@@ -38,6 +38,6 @@ const FloatIconButton: FloatIconButtonComponent = ({ imageElem, ref, ...props })
 			{imageElem}
 		</Root>
 	);
-}
+};
 
 export default FloatIconButton;

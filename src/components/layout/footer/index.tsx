@@ -15,12 +15,12 @@ type FooterProps = React.PropsWithoutRef<{
 
 type FooterComponent = React.FunctionComponent<FooterProps>;
 
-const Footer: FooterComponent = ({  }) => {
+const Footer: FooterComponent = () => {
 	return (
 		<Root>
 			<p>Footer component</p>
 		</Root>
 	);
-}
+};
 
 export default Footer;

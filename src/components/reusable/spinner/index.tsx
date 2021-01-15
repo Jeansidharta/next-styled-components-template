@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const SVG = styled.svg<{ size: number }>`
+const Svg = styled.svg<{ size: number }>`
 	${({ size = 24 }) => `
 		height: ${size}px;
 		width: ${size}px;
@@ -44,7 +44,7 @@ type SpinnerComponent = React.FunctionComponent<SpinnerProps>;
 const Spinner: SpinnerComponent = ({
 	size = 40,
 	strokeWidth = 2,
-	color = 'black',
+	color = `black`,
 	ref,
 	...props
 }) => {
@@ -61,7 +61,7 @@ const Spinner: SpinnerComponent = ({
 		}
 	`);
 
-	return <SVG viewBox={`0 0 ${size} ${size}`} size={size} {...props}>
+	return <Svg viewBox={`0 0 ${size} ${size}`} size={size} {...props}>
 		<Circle
 			strokeWidth={strokeWidth}
 			animation={animation.current}
@@ -71,7 +71,7 @@ const Spinner: SpinnerComponent = ({
 			size={size}
 			color={color}
 		/>
-	</SVG>
-}
+	</Svg>;
+};
 
 export default Spinner;

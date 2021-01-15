@@ -21,6 +21,6 @@ const AppContainer: AppContainerComponent = ({ children }) => {
 			{children}
 		</Root>
 	);
-}
+};
 
 export default AppContainer;

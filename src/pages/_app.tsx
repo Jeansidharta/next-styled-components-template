@@ -9,14 +9,18 @@ import ImageURLs from '../images';
 import AppContainer from '../containers/_app';
 
 type MyAppProps = React.PropsWithoutRef<{
+	// The following rule is being ignored because this type is not important and
+	// Is very hard to describe
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	Component: any,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	pageProps: any,
 }>;
 
 type MyAppComponent = React.FunctionComponent<MyAppProps>;
 
 const MyApp: MyAppComponent = ({ Component, pageProps }) => {
-  return (
+	return (
 		<>
 			<Head>
 				{/* Global styling */}
@@ -28,11 +32,12 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 					* {
 						box-sizing: border-box;
 					}
-				`}</style>
+				`}
+				</style>
 
 				{/* Favicon related stuff */}
-				<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-				<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+				<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+				<link rel='icon' href='/favicon.ico' type='image/x-icon' />
 
 				{/* These meta tags are related to OpenGraph, which allows for better webpage cards. */}
 				{/* TODO - put real content here */}
@@ -52,6 +57,6 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 			</FilledThemeProvider>
 		</>
 	);
-}
+};
 
-export default MyApp
+export default MyApp;
