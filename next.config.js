@@ -1,16 +1,19 @@
-const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+const ImageminWebpWebpackPlugin = require(`imagemin-webp-webpack-plugin`);
 
 module.exports = {
-	exportPathMap: async function (
+	async exportPathMap (
 		defaultPathMap,
-		{ dev, dir, outDir, distDir, buildId }
+		{ dev, dir, outDir, distDir, buildId },
 	) {
 		return {
-		...defaultPathMap,
+			...defaultPathMap,
 		// Add your reroutes here. Example:
 		// Reroutes the '/' path to '/home'
 		// '/': { page: '/home' },
-		}
+		};
 	},
 
 	// Custom webpack configurations
@@ -21,13 +24,13 @@ module.exports = {
 			use: [
 				{
 					// Allows for any kind of file to be imported through webpack
-					loader: 'file-loader',
+					loader: `file-loader`,
 					options: {
 						publicPath: `/_next/static/images/`,
-						outputPath: `${isServer ? "../" : ""}static/images/`,
-						name: "[name]-[hash].[ext]",
+						outputPath: `${isServer ? `../` : ``}static/images/`,
+						name: `[name]-[hash].[ext]`,
 						esModule: false,
-					}
+					},
 				},
 			],
 		});
@@ -36,4 +39,4 @@ module.exports = {
 		config.plugins.push(new ImageminWebpWebpackPlugin());
 		return config;
 	},
-}
+};
