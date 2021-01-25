@@ -33,6 +33,14 @@ module.exports = {
 					},
 				},
 			],
+		}, {
+			test: /\.(png|jpe?g)$/i,
+			use: [
+				{
+					// Allows for png and jpeg resizing
+					loader: `webpack-image-resize-loader`,
+				},
+			],
 		});
 
 		// Minifies images and create webp alternative for jpeg, png and gifs
