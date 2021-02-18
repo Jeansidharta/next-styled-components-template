@@ -19,28 +19,28 @@
     "upgrade": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "next": "^10.0.5",
+    "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@types/node": "^14.14.22",
-    "@types/react": "^17.0.0",
+    "@types/node": "^14.14.28",
+    "@types/react": "^17.0.2",
     "@types/styled-components": "^5.1.7",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
     "babel-plugin-styled-components": "^1.12.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.20.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "file-loader": "^6.2.0",
-    "husky": "^4.3.8",
+    "husky": "^5.0.9",
     "imagemin-webp-webpack-plugin": "^3.3.3",
-    "lighthouse": "^7.0.0",
+    "lighthouse": "^7.1.0",
     "serve": "^11.3.2",
     "serve-handler": "^6.1.3",
-    "typescript": "^4.1.3",
+    "typescript": "^4.1.5",
     "webpack-image-resize-loader": "^4.0.0"
   }
 }
