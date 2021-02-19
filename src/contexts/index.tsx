@@ -1,13 +1,12 @@
 import React from 'react';
+import ModalProvider from './modal';
 
 /** Place your React's context providers inside this component. They will automatically
 * be visible in your whole application. */
 const Providers: React.FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => {
-	// Remove this exception when the first context is created.
-	// eslint-disable-next-line react/jsx-no-useless-fragment
-	return <>
+	return <ModalProvider>
 		{children}
-	</>;
+	</ModalProvider>;
 };
 
 export default Providers;

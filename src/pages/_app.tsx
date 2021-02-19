@@ -7,6 +7,7 @@ import FilledThemeProvider from '../theme';
 import Providers from '../contexts';
 import ImageURLs from '../images';
 import AppContainer from '../containers/_app';
+import Services from '../services';
 
 type MyAppProps = React.PropsWithoutRef<{
 	// The following rule is being ignored because this type is not important and
@@ -51,6 +52,7 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 			<FilledThemeProvider>
 				<Providers>
 					<AppContainer>
+						<Services />
 						<Component {...pageProps} />
 					</AppContainer>
 				</Providers>
