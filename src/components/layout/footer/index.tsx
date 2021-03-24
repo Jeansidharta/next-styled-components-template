@@ -10,7 +10,7 @@ const Root = styled.div`
 	box-shadow: ${props => props.theme.shadows.layout.large.strong.normal};
 `;
 
-type FooterProps = React.PropsWithoutRef<Record<string, never>>;
+type FooterProps = React.PropsWithoutRef<{}>;
 
 type FooterComponent = React.FunctionComponent<FooterProps>;
 

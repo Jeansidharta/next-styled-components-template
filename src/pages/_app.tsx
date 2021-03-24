@@ -10,11 +10,7 @@ import AppContainer from '../containers/_app';
 import Services from '../services';
 
 type MyAppProps = React.PropsWithoutRef<{
-	// The following rule is being ignored because this type is not important and
-	// Is very hard to describe
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	Component: any;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	pageProps: any;
 }>;
 

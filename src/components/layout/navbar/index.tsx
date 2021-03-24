@@ -32,7 +32,7 @@ const Anchor = styled.a.attrs({ href: `#` })`
 	max-width: 80px;
 `;
 
-type NavbarProps = React.PropsWithoutRef<Record<string, never>>;
+type NavbarProps = React.PropsWithoutRef<{}>;
 
 type NavbarComponent = React.FunctionComponent<NavbarProps>;
 

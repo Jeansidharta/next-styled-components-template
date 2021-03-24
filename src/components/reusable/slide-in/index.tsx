@@ -25,8 +25,6 @@ const SlideIn: SlideInComponent = ({ duration = 2000, direction, offset = 100, c
 
 	React.useEffect(() => {
 		const { style } = rootRef.current!;
-		// Rule disabled here because there is no other option.
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(style as any)[direction] = `0px`;
 		style.opacity = `1`;
 	}, []);

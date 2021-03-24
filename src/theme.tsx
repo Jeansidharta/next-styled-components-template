@@ -55,7 +55,6 @@ type HoverableShadow = {
 
 // This will "merge" `styled-component`'s DefaultTheme type with our custom theme type.
 declare module 'styled-components' {
-	// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 	export interface DefaultTheme {
 		/** Color-related stuff, for pages with primary and secondary colors. */
 		colors: {

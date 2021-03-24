@@ -8,7 +8,7 @@ const Root = styled.div`
 	flex-direction: column;
 `;
 
-type AppContainerProps = React.PropsWithoutRef<Record<string, never>>;
+type AppContainerProps = React.PropsWithoutRef<{}>;
 type AppContainerComponent = React.FunctionComponent<AppContainerProps>;
 
 /** This component envelops the whole page. It's equivalent to the `src/pages/_app.tsx` file,

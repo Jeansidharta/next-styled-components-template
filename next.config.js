@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 const ImageminWebpWebpackPlugin = require(`imagemin-webp-webpack-plugin`);
 
 module.exports = {

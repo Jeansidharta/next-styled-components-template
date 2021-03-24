@@ -5,7 +5,6 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 - [`next`](https://nextjs.org/) (and `react`, as consequence)
 - [`styled-components`](https://styled-components.com/)
 - [`typescript`](https://www.typescriptlang.org/)
-- [`eslint`](https://eslint.org/)
 - [`prettier`](https://prettier.io/)
 - [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
 - [`husky`](https://github.com/typicode/husky)
