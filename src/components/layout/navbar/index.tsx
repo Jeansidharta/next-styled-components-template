@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import Images from '../../../constants/images';
+import Images from '../../../images';
 import NavLink from './nav-link';
 
 const Root = styled.div`
