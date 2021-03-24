@@ -37,6 +37,8 @@ type ScreenSizeQuery = {
 	laptopL: string;
 	/** 2560px, Ultra-high definition, AKA 4K screens */
 	uhd: string;
+	/** Creates a custom media-query */
+	custom: (value: number) => string;
 };
 
 /**
@@ -73,6 +75,11 @@ declare module 'styled-components' {
 			/** Useful if you have lots of gray colors in your app, and want to have
 			 * consistency between them. */
 			gray: GradientColor;
+
+			white: {
+				background: string;
+				full: string;
+			};
 		};
 		/** Font-related stuff. Things like font-family, font-weight or font-size. */
 		font: {
@@ -145,6 +152,10 @@ const theme: DefaultTheme = {
 			main: EMPTY_COLOR,
 			dark: EMPTY_COLOR,
 			darker: EMPTY_COLOR,
+		},
+		white: {
+			background: `#eeeeee`,
+			full: `white`,
 		},
 
 		// Material UI's default success colors.
@@ -223,6 +234,7 @@ const theme: DefaultTheme = {
 			laptop: `@media screen and (min-width: 1024px)`,
 			laptopL: `@media screen and (min-width: 1440px)`,
 			uhd: `@media screen and (min-width: 2560px)`,
+			custom: value => `@media screen and (min-width: ${value}px)`,
 		},
 		maxScreen: {
 			mobileS: `@media screen and (max-width: 320px)`,
@@ -232,6 +244,7 @@ const theme: DefaultTheme = {
 			laptop: `@media screen and (max-width: 1024px)`,
 			laptopL: `@media screen and (max-width: 1440px)`,
 			uhd: `@media screen and (max-width: 2560px)`,
+			custom: value => `@media screen and (max-width: ${value}px)`,
 		},
 	},
 };
