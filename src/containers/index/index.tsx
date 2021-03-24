@@ -13,8 +13,8 @@ const Main = styled.div`
 `;
 
 /**
-* Visit https://schema.org/docs/full.html for a list of all types to put here
-*/
+ * Visit https://schema.org/docs/full.html for a list of all types to put here
+ */
 // TODO - change this
 const JSONLD = `{
 	"@context": "http://schema.org/",
@@ -23,16 +23,16 @@ const JSONLD = `{
 	"image": "${ImageURLs.logoPng}"
 }`;
 
-export default function Home () {
+export default function Home() {
 	return (
 		<>
 			<Head>
 				<title>My Home Page Title</title>
 				{/* TODO - add real url */}
-				<link rel='canonical' href='https://my-domain.com/home' />
+				<link rel="canonical" href="https://my-domain.com/home" />
 
 				{/* This is json-ld with schema data */}
-				<script type='application/ld+json'>{JSONLD}</script>
+				<script type="application/ld+json">{JSONLD}</script>
 			</Head>
 			<Navbar />
 			<Main>

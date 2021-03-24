@@ -1,116 +1,116 @@
 /** *************************************************************************
-*                         What is this file?                               *
-*                                                                          *
-* This file is responsible for declaring the styled-components theme       *
-* variable. It also provides the typings for the theme                     *
-*                                                                          *
-************************************************************************** */
+ *                         What is this file?                               *
+ *                                                                          *
+ * This file is responsible for declaring the styled-components theme       *
+ * variable. It also provides the typings for the theme                     *
+ *                                                                          *
+ ************************************************************************** */
 
 import type { DefaultTheme } from 'styled-components';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 /**
-* Colors with a gradient. Allows for multiple shades of the same color.
-*/
+ * Colors with a gradient. Allows for multiple shades of the same color.
+ */
 type GradientColor = {
-	main: string,
-	light: string,
-	lighter: string,
-	dark: string,
-	darker: string,
+	main: string;
+	light: string;
+	lighter: string;
+	dark: string;
+	darker: string;
 };
 
 /** Used to describe media-queries related to the screen size. */
 type ScreenSizeQuery = {
 	/** 320px */
-	mobileS: string,
+	mobileS: string;
 	/** 375px */
-	mobileM: string,
+	mobileM: string;
 	/** 425px */
-	mobileL: string,
+	mobileL: string;
 	/** 768px */
-	tablet: string,
+	tablet: string;
 	/** 1024px */
-	laptop: string,
+	laptop: string;
 	/** 1440px */
-	laptopL: string,
+	laptopL: string;
 	/** 2560px, Ultra-high definition, AKA 4K screens */
-	uhd: string,
+	uhd: string;
 };
 
 /**
-* Used to describe shadows of hoverable components, such as buttons.
-*/
+ * Used to describe shadows of hoverable components, such as buttons.
+ */
 type HoverableShadow = {
 	/** The shadow that should be applied when there is no mouse interaction */
-	normal: string,
+	normal: string;
 	/** The shadow that should be applied when the user is clicking the element. */
-	active: string,
+	active: string;
 	/** The shadow that should be applied when the user is hovering the mouse on top
-	* of the element. Should also be applied for the `focus` event to provide
-	* feedback for keyboard users. */
-	hover: string,
+	 * of the element. Should also be applied for the `focus` event to provide
+	 * feedback for keyboard users. */
+	hover: string;
 };
 
 // This will "merge" `styled-component`'s DefaultTheme type with our custom theme type.
-declare module "styled-components" {
+declare module 'styled-components' {
 	// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 	export interface DefaultTheme {
 		/** Color-related stuff, for pages with primary and secondary colors. */
 		colors: {
-			primary: GradientColor,
-			secondary: GradientColor,
+			primary: GradientColor;
+			secondary: GradientColor;
 
 			/** Sometimes, pages will have a color dedicated to objects that should
-			* attract the user's attention, like a call-to-action button on a landing page.
-			* This is the Action color. */
-			action: GradientColor,
+			 * attract the user's attention, like a call-to-action button on a landing page.
+			 * This is the Action color. */
+			action: GradientColor;
 
-			success: GradientColor,
-			error: GradientColor,
-			warning: GradientColor,
+			success: GradientColor;
+			error: GradientColor;
+			warning: GradientColor;
 
 			/** Useful if you have lots of gray colors in your app, and want to have
-			* consistency between them. */
-			gray: GradientColor,
-		},
+			 * consistency between them. */
+			gray: GradientColor;
+		};
 		/** Font-related stuff. Things like font-family, font-weight or font-size. */
 		font: {
 			size: {
-				large: string,
-				medium: string,
-				small: string,
-			},
-		},
+				large: string;
+				medium: string;
+				small: string;
+			};
+		};
 		shadows: {
 			/** Layout shadows are shadows related to things like cards, the navbar, etc...
-			* These shadows are usually larger and more subtle */
+			 * These shadows are usually larger and more subtle */
 			layout: {
 				large: {
-					soft: HoverableShadow,
-					strong: HoverableShadow,
-				},
-			},
+					soft: HoverableShadow;
+					strong: HoverableShadow;
+				};
+			};
 			/** Button shadows are shadows for clickable elements. They are usually
-			* sharper and more dynamic. */
+			 * sharper and more dynamic. */
 			button: {
-				small: HoverableShadow,
-				medium: HoverableShadow,
-				large: HoverableShadow,
-			},
-		},
+				small: HoverableShadow;
+				medium: HoverableShadow;
+				large: HoverableShadow;
+			};
+		};
 
 		/** For standardizing media-queries. It will mostly be used to contain
-		* screen-related media queries, but should also hold queries like `@print`
-		* or `@anything-else` */
+		 * screen-related media queries, but should also hold queries like `@print`
+		 * or `@anything-else` */
 		mediaQueries: {
 			/** Screen-size related queries, that uses the `min-width` filter */
-			minScreen: ScreenSizeQuery,
+			minScreen: ScreenSizeQuery;
 
 			/** Screen-size related queries, that uses the `max-width` filter */
-			maxScreen: ScreenSizeQuery,
-		},
+			maxScreen: ScreenSizeQuery;
+		};
 	}
 }
 
@@ -237,7 +237,7 @@ const theme: DefaultTheme = {
 	},
 };
 
-function FilledThemeProvider ({ ...props }) {
+function FilledThemeProvider({ ...props }) {
 	return <ThemeProvider theme={theme} {...props} />;
 }
 

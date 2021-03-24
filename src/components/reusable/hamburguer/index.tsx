@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Styled from 'styled-components';
 
 const Root = Styled.button`
@@ -22,30 +22,33 @@ const Bar = Styled.div<{ animationTime: number }>`
 
 type HamburguerProps = React.PropsWithRef<{
 	/** Callback called when the hamburguer is opened */
-	onOpen?: ()=> void,
+	onOpen?: () => void;
 	/** Callback called when the hamburguer is closed */
-	onClose?: ()=> void,
+	onClose?: () => void;
 	/** Time (in milisseconds) it takes to animate the hamburguer */
-	animationTime?: number,
+	animationTime?: number;
 	/** If value is provided, it will override the hamburguer's internal state */
-	value?: boolean,
+	value?: boolean;
 }>;
 
 type HamburguerComponent = React.ForwardRefRenderFunction<HTMLButtonElement, HamburguerProps>;
 
 /**
-* This is a simple hamburguer, with an opening and closing animation.
-*/
-const Hamburguer: HamburguerComponent = ({
-	onOpen = () => {},
-	onClose = () => {},
-	animationTime = 200, // In milisseconds
-	value,
-	...props
-}, ref) => {
+ * This is a simple hamburguer, with an opening and closing animation.
+ */
+const Hamburguer: HamburguerComponent = (
+	{
+		onOpen = () => {},
+		onClose = () => {},
+		animationTime = 200, // In milisseconds
+		value,
+		...props
+	},
+	ref,
+) => {
 	const [isOpenState, setIsOpenState] = React.useState<boolean>(value || false);
 
-	function handleClick () {
+	function handleClick() {
 		if (typeof value === `undefined`) {
 			// Value is not set, use the component's internal state.
 			setIsOpenState(!isOpenState);
@@ -65,18 +68,18 @@ const Hamburguer: HamburguerComponent = ({
 	const isOpen = typeof value === `undefined` ? isOpenState : value;
 
 	return (
-		<Root {...props} aria-label='Abrir menu' onClick={handleClick} ref={ref}>
+		<Root {...props} aria-label="Abrir menu" onClick={handleClick} ref={ref}>
 			<Bar
-				animationTime={animationTime} style={{
+				animationTime={animationTime}
+				style={{
 					top: isOpen ? `11px` : `0px`,
 					transform: isOpen ? `rotate(45deg)` : `rotate(0deg)`,
 				}}
 			/>
+			<Bar animationTime={animationTime} style={{ opacity: isOpen ? `0` : `1` }} />
 			<Bar
-				animationTime={animationTime} style={{ opacity: isOpen ? `0` : `1` }}
-			/>
-			<Bar
-				animationTime={animationTime} style={{
+				animationTime={animationTime}
+				style={{
 					top: isOpen ? `-13px` : `0px`,
 					transform: isOpen ? `rotate(-45deg)` : `rotate(0deg)`,
 				}}

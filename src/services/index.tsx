@@ -7,9 +7,7 @@ type ServicesComponent = React.FunctionComponent;
  * A place to group together all your services.
  */
 const Services: ServicesComponent = () => {
-	return (
-		<Modal />
-	);
+	return <Modal />;
 };
 
 export default Services;

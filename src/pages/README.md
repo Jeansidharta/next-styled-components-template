@@ -9,19 +9,22 @@ To allow for more flexibility, all pages except `_app.tsx` and `_document.tsx` s
 Consider you have a page like this:
 
 <!-- Note: use spaces instead of tabs for better rendering in browsers -->
-```jsx
-function AuxiliarComponent ({ arg }) {
-  const transformedArg = arg.doTheThing();
 
-  return <SomeJsxCode someArgument={transformedArg} />;
+```jsx
+function AuxiliarComponent({ arg }) {
+	const transformedArg = arg.doTheThing();
+
+	return <SomeJsxCode someArgument={transformedArg} />;
 }
 
-export default function HomePage () {
-  return <div>
-    <AuxiliarComponent arg={1} />
-    <AuxiliarComponent arg={2} />
-    <AuxiliarComponent arg={3} />
-  </div>;
+export default function HomePage() {
+	return (
+		<div>
+			<AuxiliarComponent arg={1} />
+			<AuxiliarComponent arg={2} />
+			<AuxiliarComponent arg={3} />
+		</div>
+	);
 }
 ```
 

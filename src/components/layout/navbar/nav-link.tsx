@@ -13,7 +13,8 @@ const Anchor = styled.a`
 	transition-property: background-color color;
 	outline: none;
 	color: ${props => props.theme.colors.primary.main};
-	:hover, :focus {
+	:hover,
+	:focus {
 		background-color: ${props => props.theme.colors.primary.main};
 		color: white;
 	}
@@ -24,23 +25,16 @@ const Anchor = styled.a`
 
 type NavLinkProps = React.PropsWithChildren<{
 	/** The ID of the document object to scroll to */
-	idToFocus: string,
-}> & React.ComponentProps<'li'>;
+	idToFocus: string;
+}> &
+	React.ComponentProps<'li'>;
 
 type NavLinkComponent = React.FunctionComponent<NavLinkProps>;
 
-const NavLink: NavLinkComponent = ({
-	idToFocus,
-	children,
-	ref,
-	onClick,
-	...props
-}) => {
+const NavLink: NavLinkComponent = ({ idToFocus, children, ref, onClick, ...props }) => {
 	return (
 		<Root onClick={onClick} {...props}>
-			<Anchor href='#'>
-				{children}
-			</Anchor>
+			<Anchor href="#">{children}</Anchor>
 		</Root>
 	);
 };

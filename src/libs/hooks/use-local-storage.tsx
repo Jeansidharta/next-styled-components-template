@@ -1,7 +1,7 @@
 import React from 'react';
 
-function useLocalStorageWithInitialValue <T> (key: string, initialValue: T | (()=> T)) {
-	function getInitialValue () {
+function useLocalStorageWithInitialValue<T>(key: string, initialValue: T | (() => T)) {
+	function getInitialValue() {
 		if (initialValue instanceof Function) return initialValue();
 		else return initialValue;
 	}
@@ -23,7 +23,7 @@ function useLocalStorageWithInitialValue <T> (key: string, initialValue: T | (()
 		} else rawSetValue(JSON.parse(value));
 	}, [key]);
 
-	function setValue (newValue: T) {
+	function setValue(newValue: T) {
 		localStorage.setItem(key, JSON.stringify(newValue));
 		rawSetValue(newValue);
 	}
@@ -31,7 +31,7 @@ function useLocalStorageWithInitialValue <T> (key: string, initialValue: T | (()
 	return [value, setValue];
 }
 
-function useLocalStorageWithoutInitialValue <T> (key: string) {
+function useLocalStorageWithoutInitialValue<T>(key: string) {
 	const [value, rawSetValue] = React.useState<T | null>(() => {
 		if (typeof localStorage === `undefined`) return null;
 
@@ -46,7 +46,7 @@ function useLocalStorageWithoutInitialValue <T> (key: string) {
 		else rawSetValue(JSON.parse(value));
 	}, [key]);
 
-	function setValue (newValue: T | null) {
+	function setValue(newValue: T | null) {
 		if (newValue === null) localStorage.removeItem(key);
 		else localStorage.setItem(key, JSON.stringify(newValue));
 		rawSetValue(newValue);
@@ -55,10 +55,17 @@ function useLocalStorageWithoutInitialValue <T> (key: string) {
 	return [value, setValue];
 }
 
-function useLocalStorage <T extends Object> (key: string): [T | null, (newValue: T | null)=> void];
-function useLocalStorage <T extends Object> (key: string, initialValue: T | (()=> T)):
-[T, (newValue: T)=> void];
-function useLocalStorage <T extends Object> (key: string, initialValue?: T | (()=> T)) {
+function useLocalStorage<T extends Record<string, unknown>>(
+	key: string,
+): [T | null, (newValue: T | null) => void];
+function useLocalStorage<T extends Record<string, unknown>>(
+	key: string,
+	initialValue: T | (() => T),
+): [T, (newValue: T) => void];
+function useLocalStorage<T extends Record<string, unknown>>(
+	key: string,
+	initialValue?: T | (() => T),
+) {
 	if (initialValue) return useLocalStorageWithInitialValue(key, initialValue);
 	else return useLocalStorageWithoutInitialValue(key);
 }

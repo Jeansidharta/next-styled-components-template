@@ -32,7 +32,7 @@ const Anchor = styled.a.attrs({ href: `#` })`
 	max-width: 80px;
 `;
 
-type NavbarProps = React.PropsWithoutRef<{}>;
+type NavbarProps = React.PropsWithoutRef<Record<string, never>>;
 
 type NavbarComponent = React.FunctionComponent<NavbarProps>;
 
@@ -48,16 +48,17 @@ const Navbar: NavbarComponent = () => {
 
 	return (
 		<Root>
-			<Link href='/home'>
+			<Link href="/home">
 				<Anchor>
 					<Logo />
 				</Anchor>
 			</Link>
 			<LinksContainer ref={linksContainerRef}>
-				{links.map(link => <NavLink
-					idToFocus={link.idToFocus}
-					key={link.text}
-				>{link.text}</NavLink>)}
+				{links.map(link => (
+					<NavLink idToFocus={link.idToFocus} key={link.text}>
+						{link.text}
+					</NavLink>
+				))}
 			</LinksContainer>
 		</Root>
 	);
