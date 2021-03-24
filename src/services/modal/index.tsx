@@ -35,6 +35,19 @@ const Modal: ModalComponent = () => {
 		event.stopPropagation();
 	}
 
+	React.useEffect(() => {
+		if (!element || !options.backdropCloseOnPressingESC) return;
+
+		function handleKeyDown(event: KeyboardEvent) {
+			const key = event.key.toLowerCase();
+
+			if (key === 'escape') closeModal();
+		}
+
+		document.body.addEventListener('keydown', handleKeyDown);
+		return () => document.body.removeEventListener('keydown', handleKeyDown);
+	}, [element, options.backdropCloseOnPressingESC]);
+
 	if (!element) return null;
 
 	return (

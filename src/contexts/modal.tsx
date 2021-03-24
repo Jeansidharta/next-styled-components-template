@@ -3,15 +3,19 @@ import React from 'react';
 type ModalContext = {
 	element: React.ReactNode | null;
 	options: ModalOptions;
-	openModal: (element: React.ReactNode | null, newOptions: ModalOptions) => void;
+	openModal: (element: React.ReactNode | null, newOptions?: ModalOptions) => void;
 	closeModal: () => void;
 };
 
 type ModalOptions = {
 	backdropClickClose: boolean;
+	backdropCloseOnPressingESC: boolean;
 };
 
-const defaultModalOptions: ModalOptions = { backdropClickClose: true };
+const defaultModalOptions: ModalOptions = {
+	backdropClickClose: true,
+	backdropCloseOnPressingESC: true,
+};
 
 const context = React.createContext<ModalContext>((null as unknown) as ModalContext);
 
