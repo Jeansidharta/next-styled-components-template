@@ -57,22 +57,34 @@ These are some things you should know when using this template to avoid some wei
 - the `src/pages/_app.tsx` and `src/pages/_document.tsx` files should not contain any styled-components component definition. Doing so will throw the `class names don't match` console warning, which could potentialy cause some very hard to find bugs, so just avoid it. I'm not exactly sure why this happens, but I think it has someting to do with how `styled-components` compiles when using SSR (server-side rendering).
   - You can still import files that have `styled-components` component declarations without any warnings
 
+## Git Hooks
+
+All git hooks are specified in the `package.json` file, on the `husky` entry
+
+### Pre-push
+
+#### Lint check
+
+Any time you push code to any remote, the `npm run lint` script will be run, and if it fails, the code won't actually be pushed. This is to prevent failed builds when you're using a Continuous Deployment tool.
+
+#### Lighthouse check
+
+If you try to specificaly push to the Master branch, a Chrome's lighthouse audit will be performed on the website, making sure any code that is being pushed to the Master branch is not of substandard quality.
+
+The configurations for this script can be found on `scripts/lighthouse.config.js`, and should be nicely documented there.
+
 ## Npm scripts
 
 This project has the following scripts:
 
 - `dev`: Starts the dev server. This is what you'll be primarily doing.
-- `build`: Builds the website, ready for server-side rendering.
-- `start`: Starts the server-side rendering server, that will serve the conntent built by the `build` command. In order for the `start` command to work, you need to run the `build` command first.
-- `export`: Runs the static-site generator. It'll generate static HTML files based on your build. In order for the `export` command to work, you need to run the `build` command first.
+- `build`: Builds the website for server-side rendering.
+- `start`: Starts the server-side rendering server, that will serve the content built by the `build` command. In order for the `start` command to work, you need to run the `build` command first.
+- `export`: Runs the static-site generator. It'll generate static HTML files based on your last build. In order for the `export` command to work, you need to run the `build` command first.
 - `build-export`: both builds and exports the website.
-- `serve`: This onde will run the `build-export` command, and will serve the result from a static content server.
-- `lint`: Checks for typescript errors.
+- `serve`: This one will run the `build-export` command, and will serve the result from a static content server.
+- `lint`: Checks for typescript or linting errors.
 - `pm2`: This will register the website on the pm2 program. If you're not using pm2, you can remove this.
-
-Also, any time you push code to any remote, the `lint` script will be run, and if it fails, the code won't actually be pushed.
-
-If you try to specificaly push to the Master branch, a Chrome's lighthouse audit will be performed on the website, making sure any code that is being pushed to the Master branch is not of substandard quality.
 
 ## Why these libraries?
 
