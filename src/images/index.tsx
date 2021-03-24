@@ -10,7 +10,7 @@
 import React from 'react';
 import type { FlattenSimpleInterpolation } from 'styled-components';
 import styled from 'styled-components';
-import ImageURLs from '../images';
+import ImageURLs from './image-urls';
 
 const hasWebpCounterpartRegex = /\.(png|jpe?g)$/;
 
