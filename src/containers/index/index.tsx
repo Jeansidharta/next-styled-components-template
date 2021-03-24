@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Navbar from '../../components/layout/navbar';
 import Footer from '../../components/layout/footer';
 import ImageURLs from '../../images/image-urls';
+import Button from '../../components/reusable/button';
+import { useModal } from '../../contexts/modal';
+import TestModal from '../../components/modals/test-modal';
 
 const Main = styled.div`
 	width: 100%;
@@ -24,6 +27,12 @@ const JSONLD = `{
 }`;
 
 export default function Home() {
+	const { openModal } = useModal();
+
+	function handleTestModalClick() {
+		openModal(<TestModal />);
+	}
+
 	return (
 		<>
 			<Head>
@@ -37,6 +46,7 @@ export default function Home() {
 			<Navbar />
 			<Main>
 				<h1>Hello!</h1>
+				<Button onClick={handleTestModalClick}>Open test modal</Button>
 			</Main>
 			<Footer />
 		</>
