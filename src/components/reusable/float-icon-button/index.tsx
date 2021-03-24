@@ -12,7 +12,8 @@ const Root = styled.button`
 	transition: 200ms;
 	outline: none;
 	border: 0;
-	:hover, :focus {
+	:hover,
+	:focus {
 		box-shadow: ${props => props.theme.shadows.button.small.hover};
 		transform: scale(1.1);
 	}
@@ -23,21 +24,18 @@ const Root = styled.button`
 `;
 
 type FloatIconButtonProps = React.PropsWithoutRef<{
-	imageElem: React.ReactNode,
-}> & React.ComponentProps<'button'>;
+	imageElem: React.ReactNode;
+}> &
+	React.ComponentProps<'button'>;
 
 type FloatIconButtonComponent = React.FunctionComponent<FloatIconButtonProps>;
 
 /**
-* This is more of a visual component. It will render the `imageElem` prop on it's center,
-* with some shadow around it. It's supposed to be a simple icon.
-*/
+ * This is more of a visual component. It will render the `imageElem` prop on it's center,
+ * with some shadow around it. It's supposed to be a simple icon.
+ */
 const FloatIconButton: FloatIconButtonComponent = ({ imageElem, ref, ...props }) => {
-	return (
-		<Root {...props}>
-			{imageElem}
-		</Root>
-	);
+	return <Root {...props}>{imageElem}</Root>;
 };
 
 export default FloatIconButton;
