@@ -5,6 +5,8 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 - [`next`](https://nextjs.org/) (and `react`, as consequence)
 - [`styled-components`](https://styled-components.com/)
 - [`typescript`](https://www.typescriptlang.org/)
+- [`eslint`](https://eslint.org/)
+- [`prettier`](https://prettier.io/)
 - [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
 - [`husky`](https://github.com/typicode/husky)
 - [`lighthouse`](https://github.com/GoogleChrome/lighthouse) for quality control of the whole page.
@@ -51,6 +53,7 @@ Always remember this is not set in stone, and is simply the best way I've develo
 These are some things you should know when using this template to avoid some weird bugs, or unoptimal performance.
 
 - All `jpeg`, `png` and `gif` images have to be imported using the `require` function, and **NOT** through the `public` folder. This is to ensure the images are properly optimized. Read more about this in my section about `imagemin-webp-webpack-plugin`.
+
   - `svg` images can be imported both through `require` or through the public folder, since they are not optimized, but I'd suggest always using the `require` function for consistency
   - If you want to support other image extensions, you'll have to change a few things in the `next.config.js` file. There should be enough comments in there to guide you in this mission. Webpack is kind of a nightmare (for me), so Good Luck.
 
@@ -83,6 +86,8 @@ This project has the following scripts:
 - `export`: Runs the static-site generator. It'll generate static HTML files based on your last build. In order for the `export` command to work, you need to run the `build` command first.
 - `build-export`: both builds and exports the website.
 - `serve`: This one will run the `build-export` command, and will serve the result from a static content server.
+- `lint`: Checks for any linting problem.
+- `prettier`: Runs prettier on the whole project.
 - `lint`: Checks for typescript or linting errors.
 - `pm2`: This will register the website on the pm2 program. If you're not using pm2, you can remove this.
 
@@ -113,27 +118,36 @@ React's styling solution out-of-the-box is plain old CSS. You simply import `.cs
 In `styled-components`, instead of doing something like this:
 
 ```jsx
-function Component () {
-  return <>
-    <div class='card'>
-      <div class='text-container'>
-        <h1 class='title'>My title!</h1>
-        <p class='paragraph'>My paragraph!</p>
-      </div>
-      <div class='buttons-container'>
-        <button>Next</button>
-        <button>Prev</button>
-      </div>
-    </div>
-
-    // Styled-jsx styling
-    <style jsx>{`
-      .card { /* Some styling... */ }
-      .text-container { /* Some styling... */ }
-      .buttons-container { /* Some styling... */ }
-      .buttons-container { /* Some styling... */ }
-    `}</style>
-  </>;
+function Component() {
+	return (
+		<>
+			<div class="card">
+				<div class="text-container">
+					<h1 class="title">My title!</h1>
+					<p class="paragraph">My paragraph!</p>
+				</div>
+				<div class="buttons-container">
+					<button>Next</button>
+					<button>Prev</button>
+				</div>
+			</div>
+			// Styled-jsx styling
+			<style jsx>{`
+				.card {
+					/* Some styling... */
+				}
+				.text-container {
+					/* Some styling... */
+				}
+				.buttons-container {
+					/* Some styling... */
+				}
+				.buttons-container {
+					/* Some styling... */
+				}
+			`}</style>
+		</>
+	);
 }
 ```
 
@@ -141,42 +155,42 @@ You can have something like this:
 
 ```jsx
 const Card = styled.div`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
 const TextContainer = styled.div`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
 const Title = styled.h1`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
 const Paragraph = styled.p`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
 const ButtonsContainer = styled.div`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
 const Button = styled.button`
-  /* Some styling... */
+	/* Some styling... */
 `;
 
-function Component () {
-  return (
-    <Card>
-      <TextContainer>
-        <Title>My title!</Title>
-        <Paragraph>My paragraph!</Paragraph>
-      </TextContainer>
-      <ButtonsContainer>
-        <Button>Next</Button>
-        <Button>Prev</Button>
-      </ButtonsContainer>
-    </Card>
-  );
+function Component() {
+	return (
+		<Card>
+			<TextContainer>
+				<Title>My title!</Title>
+				<Paragraph>My paragraph!</Paragraph>
+			</TextContainer>
+			<ButtonsContainer>
+				<Button>Next</Button>
+				<Button>Prev</Button>
+			</ButtonsContainer>
+		</Card>
+	);
 }
 ```
 
@@ -187,6 +201,10 @@ With `styled-components` not only do you not rely on matching CSS classes anymor
 However, `styled-components` comes with a great cost: since it applies styles through JavaScript, your application would only be styled when your JavaScript code finishes loading, compiling and executing... Or does it? Since we are using `next`, we can actually render the styles on the server, and inline the critial parts on the HTML file! The greatest technical flaw of CSS-in-JS solutions is bypassed by `next` through SSG (static site generation)! It's actually better performance-wise for `next` to use `styled-components` over vanilla CSS, because Webpack can detect all of your page's styling dependencies, and only load the important stuff that you need right now! it's automatically code-splitting the styles for you.
 
 I recognize that there is a somewhat heated debate in the web community about CSS-in-JS solutions, but with SSG, I can't see a very reasonable argument against this kind of technology other than architectural preference.
+
+### Prettier
+
+I like prettier because it's very automatic on code formating. I personally don't agree with all of it's rules on formating, but I think adding it to the project is worth it because it saves a lot of time with it's code formating rules.
 
 ### `imagemin-webp-webpack-plugin`
 
