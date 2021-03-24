@@ -23,7 +23,22 @@ This project was designed to be compiled into static HTML, CSS and JavaScript fi
 
 This project already has a [pm2](https://pm2.keymetrics.io/) configuration file, if you'd like to use that to serve the page in your own server.
 
-If you want to use a third-party to serve your website, I'd recommend my personal favorite provider to quickly deploy any project: (Netlify)[https://www.netlify.com/].
+If you want to use a third-party to serve your website, I'd recommend my personal favorite provider to quickly deploy any project: [Netlify](https://www.netlify.com/).
+
+### Deploying on Nelify
+
+Netlify is a CDN. Therefore, you can't deploy Next.js projects that use Server-side rendering. You can only deploy Next.js projects that use Static site generation. There are two possibilities to deploy there: Through the drag-and-drop interface, or through a git repository.
+
+#### Using the simple drag-and-drop interface
+
+Netlify Allows you to just drag and drop you your Static Generated Files. In order to use that, you just have to build your site using `npm run build-export` and drag the folder `out` to Netlify's interface.
+
+#### Using a git repository
+
+If you want to use the Continuous Deployment option through a git repository, all you have to do is connect your github or gitlab account on Netlify, select the repository you want to deploy, and specify the build command and the deploy folder as such:
+
+- Build command: `npm run build-export`
+- Deploy folder: `out`
 
 ## How are the folders organized?
 
