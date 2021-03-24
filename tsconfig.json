@@ -63,6 +63,6 @@
 		"isolatedModules": true,
 		"jsx": "preserve"
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-	"exclude": ["node_modules"]
+	"include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+	"exclude": ["node_modules", ".husky", "out", ".next", ".git", "scripts", "public", ".vscode"]
 }

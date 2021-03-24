@@ -5,7 +5,7 @@ import Head from 'next/head';
 // Misc
 import FilledThemeProvider from '../theme';
 import Providers from '../contexts';
-import ImageURLs from '../images';
+import ImageURLs from '../images/image-urls';
 import AppContainer from '../containers/_app';
 import Services from '../services';
 
