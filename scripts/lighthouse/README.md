@@ -1,4 +1,4 @@
-# The sripts/lighthouse folder
+# The scripts/lighthouse folder
 
 the index.js script is a script that is supposed to be run as a pre-push git hook. It should check if your website passes the required lighthouse scores.
 
