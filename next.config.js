@@ -1,6 +1,9 @@
 const ImageminWebpWebpackPlugin = require(`imagemin-webp-webpack-plugin`);
 
 module.exports = {
+	future: {
+		webpack5: true,
+	},
 	async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
 		return {
 			...defaultPathMap,
