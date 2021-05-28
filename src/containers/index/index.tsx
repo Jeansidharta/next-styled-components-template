@@ -7,6 +7,7 @@ import ImageURLs from '../../images/image-urls';
 import Button from '../../components/reusable/button';
 import { useModal } from '../../contexts/modal';
 import TestModal from '../../components/modals/test-modal';
+import { deployedURLHome } from '../../constants/deployed-url';
 
 const Main = styled.div`
 	width: 100%;
@@ -23,6 +24,7 @@ const JSONLD = `{
 	"@context": "http://schema.org/",
 	"@type": "Thing",
 	"name": "your site thing",
+	"url": "${deployedURLHome}",
 	"image": "${ImageURLs.logoPng}"
 }`;
 
@@ -37,11 +39,13 @@ export default function Home() {
 		<>
 			<Head>
 				<title>My Home Page Title</title>
-				{/* TODO - add real url */}
-				<link rel="canonical" href="https://my-domain.com/home" />
+				<link rel="canonical" href={deployedURLHome} />
 
 				{/* This is json-ld with schema data */}
 				<script type="application/ld+json">{JSONLD}</script>
+
+				{/* TODO - Set custom page description */}
+				<meta name="description" content="My personal description" />
 			</Head>
 			<Navbar />
 			<Main>

@@ -2,6 +2,7 @@ import React from 'react';
 import type { DocumentContext } from 'next/document';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { supportedLanguages } from '../constants/supported-languages';
 
 export default class MyDocument extends Document {
 	public static async getInitialProps(ctx: DocumentContext) {
@@ -31,11 +32,8 @@ export default class MyDocument extends Document {
 	public render() {
 		return (
 			// The `og` prefix is to allow for OpenGraph tools to read info from the site
-			<Html lang="pt-br" prefix="og: http://ogp.me/ns#">
-				<Head>
-					{/* TODO - Set custom page description */}
-					<meta name="description" content="My personal description" />
-				</Head>
+			<Html lang={supportedLanguages[0]} prefix="og: http://ogp.me/ns#">
+				<Head />
 				<body>
 					<Main />
 					<NextScript />
