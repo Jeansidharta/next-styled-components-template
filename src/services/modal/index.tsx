@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useModal } from '../../contexts/modal';
+import { useDocumentBodyEvent } from '../../libs/hooks/use-global-event';
 
 const Backdrop = styled.div`
 	position: fixed;
@@ -35,18 +36,15 @@ const Modal: ModalComponent = () => {
 		event.stopPropagation();
 	}
 
-	React.useEffect(() => {
-		if (!element || !options.backdropCloseOnPressingESC) return;
-
-		function handleKeyDown(event: KeyboardEvent) {
+	useDocumentBodyEvent(
+		'keydown',
+		event => {
+			if (!element || !options.backdropCloseOnPressingESC) return;
 			const key = event.key.toLowerCase();
-
 			if (key === 'escape') closeModal();
-		}
-
-		document.body.addEventListener('keydown', handleKeyDown);
-		return () => document.body.removeEventListener('keydown', handleKeyDown);
-	}, [element, options.backdropCloseOnPressingESC]);
+		},
+		[element, options.backdropCloseOnPressingESC],
+	);
 
 	if (!element) return null;
 
