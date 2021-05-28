@@ -8,12 +8,11 @@ import Button from '../../components/reusable/button';
 import { useModal } from '../../contexts/modal';
 import TestModal from '../../components/modals/test-modal';
 import { deployedURLHome } from '../../constants/deployed-url';
+import Select from '../../components/reusable/select';
 
 const Main = styled.div`
-	width: 100%;
-	height: 100%;
-	font-size: 32px;
-	overflow-y: auto;
+	min-height: 100vh;
+	padding: 16px;
 `;
 
 /**
@@ -51,6 +50,17 @@ export default function Home() {
 			<Main>
 				<h1>Hello!</h1>
 				<Button onClick={handleTestModalClick}>Open test modal</Button>
+				<Select
+					style={{ marginTop: 32 }}
+					label="Batata"
+					options={[
+						'Select Option 1',
+						'Select Option 2',
+						'Select Option 3',
+						'Select Option 4',
+						'Select Option 5',
+					]}
+				/>
 			</Main>
 			<Footer />
 		</>
