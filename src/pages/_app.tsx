@@ -22,19 +22,6 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
-				{/* Global styling */}
-				<style>
-					{`
-					body, html, #__next {
-						height: 100%;
-						margin: 0;
-					}
-					* {
-						box-sizing: border-box;
-					}
-				`.replace(/\s/g, '')}
-				</style>
-
 				{/* Favicon related stuff */}
 				<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" />

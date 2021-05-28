@@ -4,6 +4,24 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { supportedLanguages } from '../constants/supported-languages';
 
+/**
+ * Fetches the page's global styles, that will be directly injected into the HTML.
+ * This CSS file was imported like this to prevent a chaining dependency when first
+ * downloading the web page.
+ */
+export function getExtraCSS() {
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	const fs = require(`fs`);
+
+	// The file containing the global styles.
+	const fontText = fs.readFileSync(`src/global-css.css`, { encoding: `utf8` });
+
+	// The CSS file is not minified. This is to remove all unnecessary whitespaces and comments
+	// So the client won't have to download crap. This maaaay break things, be careful.
+	const commentsAndWhitespacesRegex = /\s|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)/g;
+	return fontText.replace(commentsAndWhitespacesRegex, ``);
+}
+
 export default class MyDocument extends Document {
 	public static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
@@ -15,10 +33,13 @@ export default class MyDocument extends Document {
 					enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
 				});
 			const initialProps = await Document.getInitialProps(ctx);
+			// Fetch global CSS styles
+			const extraCss = getExtraCSS();
 			return {
 				...initialProps,
 				styles: (
 					<>
+						<style dangerouslySetInnerHTML={{ __html: extraCss }} />
 						{initialProps.styles}
 						{sheet.getStyleElement()}
 					</>

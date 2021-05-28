@@ -1,0 +1,12 @@
+/* This file is included in the project through the `/src/_document.tsx` file. */
+
+body,
+html,
+#__next {
+	height: 100%;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
