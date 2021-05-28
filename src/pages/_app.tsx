@@ -32,7 +32,7 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 					* {
 						box-sizing: border-box;
 					}
-				`}
+				`.replace(/\s/g, '')}
 				</style>
 
 				{/* Favicon related stuff */}

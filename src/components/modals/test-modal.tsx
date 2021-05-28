@@ -6,9 +6,7 @@ import Card from '../reusable/card';
 
 const Root = styled(Card)``;
 
-type TestModalProps = React.PropsWithoutRef<{}>;
-
-type TestModalComponent = React.FunctionComponent<TestModalProps>;
+type TestModalComponent = React.FunctionComponent;
 
 const TestModal: TestModalComponent = ({}) => {
 	const { closeModal } = useModal();

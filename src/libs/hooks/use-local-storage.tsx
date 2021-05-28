@@ -1,18 +1,31 @@
 import React from 'react';
 
+/**
+ * Auxiliar function
+ */
+function makeInitialStateGetter<T>(key: string, initialValueGetter: () => T) {
+	return () => {
+		const isRenderingOnTheServer = typeof localStorage === `undefined`;
+		if (isRenderingOnTheServer) return initialValueGetter();
+
+		const value = localStorage.getItem(key);
+		if (value === null) return initialValueGetter();
+		else return JSON.parse(value) as T;
+	};
+}
+
 function useLocalStorageWithInitialValue<T>(key: string, initialValue: T | (() => T)) {
 	function getInitialValue() {
 		if (initialValue instanceof Function) return initialValue();
 		else return initialValue;
 	}
 
-	const [value, rawSetValue] = React.useState<T>(() => {
-		if (typeof localStorage === `undefined`) return getInitialValue();
+	const [value, rawSetValue] = React.useState<T>(makeInitialStateGetter(key, getInitialValue));
 
-		const value = localStorage.getItem(key);
-		if (value === null) return getInitialValue();
-		else return JSON.parse(value) as T;
-	});
+	function setValue(newValue: T) {
+		localStorage.setItem(key, JSON.stringify(newValue));
+		rawSetValue(newValue);
+	}
 
 	React.useEffect(() => {
 		const value = localStorage.getItem(key);
@@ -23,28 +36,11 @@ function useLocalStorageWithInitialValue<T>(key: string, initialValue: T | (() =
 		} else rawSetValue(JSON.parse(value));
 	}, [key]);
 
-	function setValue(newValue: T) {
-		localStorage.setItem(key, JSON.stringify(newValue));
-		rawSetValue(newValue);
-	}
-
-	return [value, setValue];
+	return [value, setValue] as const;
 }
 
 function useLocalStorageWithoutInitialValue<T>(key: string) {
-	const [value, rawSetValue] = React.useState<T | null>(() => {
-		if (typeof localStorage === `undefined`) return null;
-
-		const value = localStorage.getItem(key);
-		if (value === null) return null;
-		else return JSON.parse(value) as T;
-	});
-
-	React.useEffect(() => {
-		const value = localStorage.getItem(key);
-		if (value === null) rawSetValue(null);
-		else rawSetValue(JSON.parse(value));
-	}, [key]);
+	const [value, rawSetValue] = React.useState<T | null>(makeInitialStateGetter(key, () => null));
 
 	function setValue(newValue: T | null) {
 		if (newValue === null) localStorage.removeItem(key);
@@ -52,7 +48,13 @@ function useLocalStorageWithoutInitialValue<T>(key: string) {
 		rawSetValue(newValue);
 	}
 
-	return [value, setValue];
+	React.useEffect(() => {
+		const value = localStorage.getItem(key);
+		if (value === null) rawSetValue(null);
+		else rawSetValue(JSON.parse(value));
+	}, [key]);
+
+	return [value, setValue] as const;
 }
 
 function useLocalStorage<T extends Record<string, unknown>>(

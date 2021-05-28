@@ -48,7 +48,7 @@ const Hamburguer: HamburguerComponent = (
 ) => {
 	const [isOpenState, setIsOpenState] = React.useState<boolean>(value || false);
 
-	function handleClick() {
+	const handleClick = React.useCallback(() => {
 		if (typeof value === `undefined`) {
 			// Value is not set, use the component's internal state.
 			setIsOpenState(!isOpenState);
@@ -56,14 +56,14 @@ const Hamburguer: HamburguerComponent = (
 			// Value is set. Don't touch the component's state
 			onClose();
 		} else onOpen();
-	}
+	}, [value, onOpen, onClose]);
 
 	React.useEffect(() => {
 		if (typeof value !== `undefined`) return;
 
 		if (isOpenState) onOpen();
 		else onClose();
-	}, [isOpenState, value]);
+	}, [isOpenState, value, onOpen, onClose]);
 
 	const isOpen = typeof value === `undefined` ? isOpenState : value;
 

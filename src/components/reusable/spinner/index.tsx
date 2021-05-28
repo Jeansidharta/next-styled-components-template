@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Svg = styled.svg<{ size: number }>`
-	${({ size = 24 }) => `
+	${({ size = 20 }) => `
 		height: ${size}px;
 		width: ${size}px;
 		viewBox: 0 0 ${size} ${size};
@@ -34,7 +34,7 @@ type SpinnerProps = React.PropsWithRef<{
 	/** The spinner's color. Default is black. */
 	color?: string;
 }> &
-	React.ComponentProps<'svg'>;
+	Omit<React.ComponentProps<'svg'>, 'ref'>;
 
 type SpinnerComponent = React.FunctionComponent<SpinnerProps>;
 
@@ -42,13 +42,7 @@ type SpinnerComponent = React.FunctionComponent<SpinnerProps>;
  * This is a spinner component. It is often use to indicate to the user that a
  * server request is being made.
  */
-const Spinner: SpinnerComponent = ({
-	size = 40,
-	strokeWidth = 2,
-	color = `black`,
-	ref,
-	...props
-}) => {
+const Spinner: SpinnerComponent = ({ size = 20, strokeWidth = 2, color = `black`, ...props }) => {
 	const animation = React.useRef(keyframes`
 		0% {
 			stroke-dashoffset: ${0.66 * size};
