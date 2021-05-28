@@ -4,7 +4,7 @@ import { useModal } from '../../contexts/modal';
 
 const Backdrop = styled.div`
 	position: fixed;
-	z-index: 10;
+	z-index: ${props => props.theme.zIndex.modal};
 	top: 0;
 	left: 0;
 	width: 100%;
