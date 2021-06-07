@@ -38,27 +38,6 @@ const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 const argv = process.argv;
 
-if (argv.length !== 6){
-	console.log('Incorrect number of aruments provided to lighthouse script.');
-	process.exit(-1);
-}
-
-const [
-	_nodeExecArg, // This first arg should be ignored
-	_lighthouseScriptPath, // this second argument should be ignored.
-	// Args received from GIT. Only localRef and remoteRef will be used.
-	localRef, _localSha1, remoteRef, _remoteSha1
-] = argv;
-
-// Don't lighthouse check if it's not a master push. Lighthouse checking is expensive.
-if (!remoteRef.endsWith('master') && !localRef.endsWith('master')) {
-	console.log('Not pushing to master. Skipping lighthouse checks...');
-	process.exit(0);
-}
-
-// Alright, we now know its a push to master.
-console.log('pushing to master, executing lighthouse...');
-
 // Load the config variables. For more explanation about them, go to the actual
 // config file. There should be enough comments there.
 const {
@@ -70,10 +49,48 @@ const {
 	SSL_KEY_LOCATION,
 	SHOULD_GENERATE_REPORT_FILE,
 	SKIPPED_AUDITS,
+	TRIGGERING_BRANCH_NAME,
 } = require(CONFIG_LOCATION);
 
+const isGitOperation = argv.length === 6;
+const isTerminalOperation = argv.length === 2;
+if (isGitOperation) {
+	const [
+		_nodeExecArg, // This first arg should be ignored
+		_lighthouseScriptPath, // this second argument should be ignored.
+		// Args received from GIT. Only localRef and remoteRef will be used.
+		localRef,
+		localSha1,
+		remoteRef,
+		remoteSha1,
+	] = argv;
+
+	// Checks for pushes to the target branch
+	const isPushingToMain =
+		TRIGGERING_BRANCH_NAME.some(name => remoteRef.endsWith(name)) ||
+		TRIGGERING_BRANCH_NAME.some(name => localRef.endsWith(name));
+
+	if (!isPushingToMain) {
+		console.log('Not pushing to any target branch. Skipping lighthouse checks...');
+		process.exit(0);
+	}
+
+	if (localSha1 === remoteSha1) {
+		console.log('Local and Remote commits are the same. Skipping lighthouse checks...');
+		process.exit(0);
+	}
+
+	// Alright, we now know its a push to the target branth.
+	console.log(`Pushing to ${remoteRef}, executing lighthouse...`);
+} else if (!isTerminalOperation) {
+	console.log(
+		'Incorrect number of aruments provided to lighthouse script. Either provide no arguments, or provide 4 arguments',
+	);
+	process.exit(-1);
+}
+
 /** Makes sure we are looking at the latest version of the app. */
-function buildAndExportApp () {
+function buildAndExportApp() {
 	const { status } = spawnSync('npm', ['run', NPM_BUILD_SCRIPT], { shell: true, stdio: 'inherit' });
 
 	if (status !== 0) {
@@ -85,16 +102,19 @@ function buildAndExportApp () {
  * Serves the app with the "serve" npm package. This is so the lighthouse has a
  * "server" to fetch our page from.
  */
-async function serveApp () {
+async function serveApp() {
 	return new Promise(resolve => {
 		// Start an HTTP2 server.
-		const server = http2.createSecureServer({
-			allowHTTP1: true,
-			cert: fs.readFileSync(SSL_CERT_LOCATION),
-			key: fs.readFileSync(SSL_KEY_LOCATION),
-		}, (request, response) => {
-			return handler(request, response, { public: BUILD_OUT_FOLDER });
-		});
+		const server = http2.createSecureServer(
+			{
+				allowHTTP1: true,
+				cert: fs.readFileSync(SSL_CERT_LOCATION),
+				key: fs.readFileSync(SSL_KEY_LOCATION),
+			},
+			(request, response) => {
+				return handler(request, response, { public: BUILD_OUT_FOLDER });
+			},
+		);
 
 		server.listen(APP_PORT_SERVE, () => {
 			console.log(`App being served on port ${APP_PORT_SERVE}, from folder ${BUILD_OUT_FOLDER}`);
@@ -106,8 +126,10 @@ async function serveApp () {
 /**
  * Actually runs the Lighthouse npm package.
  */
-async function runLighthouse () {
-	const chrome = await chromeLauncher.launch({chromeFlags: ['--headless', '--ignore-certificate-errors']});
+async function runLighthouse() {
+	const chrome = await chromeLauncher.launch({
+		chromeFlags: ['--headless', '--ignore-certificate-errors'],
+	});
 	console.log(`ignoring the following audits: '${SKIPPED_AUDITS.join(`', '`)}'`);
 	const runnerResult = await lighthouse('https://localhost:' + APP_PORT_SERVE, {
 		logLevel: '',
@@ -117,8 +139,7 @@ async function runLighthouse () {
 		skipAudits: SKIPPED_AUDITS,
 	});
 
-	if (SHOULD_GENERATE_REPORT_FILE)
-		fs.writeFileSync('lighthouse-report.json', runnerResult.report);
+	if (SHOULD_GENERATE_REPORT_FILE) fs.writeFileSync('lighthouse-report.json', runnerResult.report);
 
 	await chrome.kill();
 	return JSON.parse(runnerResult.report);
@@ -146,15 +167,15 @@ async function runLighthouse () {
  * 	}
  * }} lighthouseReport
  */
-function checkLighthouseReport (lighthouseReport) {
-	function handleLighthouseScore (scoreName) {
+function checkLighthouseReport(lighthouseReport) {
+	function handleLighthouseScore(scoreName) {
 		const scoreObject = lighthouseReport.categories[scoreName];
 		const { score } = scoreObject;
 		const scoreTarget = LIGHTHOUSE_REQUIREMENTS[scoreName];
 		if (score < scoreTarget) {
 			console.log(`Category '${scoreName}' scored ${score}, needed ${scoreTarget}. FAILED`);
 			scoreObject.auditRefs.forEach(auditRef => {
-				const audit = lighthouseReport.audits[auditRef.id]
+				const audit = lighthouseReport.audits[auditRef.id];
 				if (audit.score !== null && audit.score !== 1) {
 					console.log(`\tAudit id "${audit.id}" score ${audit.score}: ${audit.title}`);
 				}
@@ -166,8 +187,7 @@ function checkLighthouseReport (lighthouseReport) {
 		}
 	}
 
-	const anyProblemFound = Object
-		.keys(LIGHTHOUSE_REQUIREMENTS) // Get all requirements to be checked.
+	const anyProblemFound = Object.keys(LIGHTHOUSE_REQUIREMENTS) // Get all requirements to be checked.
 		.map(handleLighthouseScore) // Check for problems on all requirements.
 		.some(success => !success); // Checks if any requirement had a problem.
 
