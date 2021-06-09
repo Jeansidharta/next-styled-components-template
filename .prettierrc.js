@@ -9,4 +9,5 @@ module.exports = {
 	bracketSpacing: true, // Put spaces between object literal brackets
 	jsxBracketSameLine: false, // Leave the jsx close bracket at the end of the line
 	arrowParens: 'avoid', // Only use arrow function parenthesis when needed
+	endOfLine: 'lf', // Always use 'lf' as end of line
 };
