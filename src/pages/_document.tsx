@@ -13,13 +13,17 @@ export function getExtraCSS() {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	const fs = require(`fs`);
 
+	const toastifyCSS = fs.readFileSync('node_modules/react-toastify/dist/ReactToastify.min.css', {
+		encoding: 'utf8',
+	});
+
 	// The file containing the global styles.
 	const fontText = fs.readFileSync(`src/global-css.css`, { encoding: `utf8` });
 
 	// The CSS file is not minified. This is to remove all unnecessary whitespaces and comments
 	// So the client won't have to download crap. This maaaay break things, be careful.
 	const commentsAndWhitespacesRegex = /\s|(\/\*[^*]*\*+([^/*][^*]*\*+)*\/)/g;
-	return fontText.replace(commentsAndWhitespacesRegex, ``);
+	return fontText.replace(commentsAndWhitespacesRegex, ``) + toastifyCSS;
 }
 
 export default class MyDocument extends Document {

@@ -4,6 +4,7 @@ At the time of writting, this is my personal favorite stack to use, and since i'
 
 - [`next`](https://nextjs.org/) (and `react`, as consequence)
 - [`styled-components`](https://styled-components.com/)
+- [`react-toastify`](https://github.com/fkhadra/react-toastify#readme)
 - [`typescript`](https://www.typescriptlang.org/)
 - [`prettier`](https://prettier.io/)
 - [`imagemin-webp-webpack-plugin`](https://github.com/iampava/imagemin-webp-webpack-plugin) (and [`file-loader`](https://webpack.js.org/loaders/file-loader/) to allow this plugin to work).
@@ -200,6 +201,10 @@ With `styled-components` not only do you not rely on matching CSS classes anymor
 However, `styled-components` comes with a great cost: since it applies styles through JavaScript, your application would only be styled when your JavaScript code finishes loading, compiling and executing... Or does it? Since we are using `next`, we can actually render the styles on the server, and inline the critial parts on the HTML file! The greatest technical flaw of CSS-in-JS solutions is bypassed by `next` through SSG (static site generation)! It's actually better performance-wise for `next` to use `styled-components` over vanilla CSS, because Webpack can detect all of your page's styling dependencies, and only load the important stuff that you need right now! it's automatically code-splitting the styles for you.
 
 I recognize that there is a somewhat heated debate in the web community about CSS-in-JS solutions, but with SSG, I can't see a very reasonable argument against this kind of technology other than architectural preference.
+
+### `react-toastify`
+
+This is just a small toast library. It's simple to use, simple to setup and has a nice API. Also, I like it's visual style.
 
 ### Prettier
 

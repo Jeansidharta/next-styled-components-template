@@ -8,6 +8,7 @@ import Providers from '../contexts';
 import ImageURLs from '../images/image-urls';
 import AppContainer from '../containers/_app';
 import Services from '../services';
+import { ToastContainer } from 'react-toastify';
 import { deployedURLHome } from '../constants/deployed-url';
 import { supportedLanguages } from '../constants/supported-languages';
 
@@ -45,6 +46,7 @@ const MyApp: MyAppComponent = ({ Component, pageProps }) => {
 				<Providers>
 					<AppContainer>
 						<Services />
+						<ToastContainer hideProgressBar />
 						<Component {...pageProps} />
 					</AppContainer>
 				</Providers>
