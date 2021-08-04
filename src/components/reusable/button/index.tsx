@@ -82,7 +82,7 @@ const Button: ButtonComponent = ({
 			{...props}
 		>
 			{children}
-			{isLoading && <Spinner strokeWidth={2} size={20} />}
+			{isLoading && <Spinner strokeWidth={1} size={15} />}
 		</Root>
 	);
 };

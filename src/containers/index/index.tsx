@@ -9,10 +9,20 @@ import { useModal } from '../../contexts/modal';
 import TestModal from '../../components/modals/test-modal';
 import { deployedURLHome } from '../../constants/deployed-url';
 import Select from '../../components/reusable/select';
+import { useFetchTodos } from '../../api/todos';
 
 const Main = styled.div`
 	min-height: 100vh;
 	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 24px;
+`;
+
+const PostContainer = styled.p`
+	padding: 8px;
+	border-radius: 8px;
+	box-shadow: ${props => props.theme.shadows.button.medium.normal};
 `;
 
 /**
@@ -29,6 +39,7 @@ const JSONLD = `{
 
 export default function Home() {
 	const { openModal } = useModal();
+	const [fetchTodos, { data, status }] = useFetchTodos();
 
 	function handleTestModalClick() {
 		openModal(<TestModal />);
@@ -50,6 +61,9 @@ export default function Home() {
 			<Main>
 				<h1>Hello!</h1>
 				<Button onClick={handleTestModalClick}>Open test modal</Button>
+				<Button isLoading={status === 'LOADING'} onClick={() => fetchTodos()}>
+					Fetch Todos
+				</Button>
 				<Select
 					style={{ marginTop: 32 }}
 					label="Batata"
@@ -61,6 +75,14 @@ export default function Home() {
 						'Select Option 5',
 					]}
 				/>
+				{status === 'DONE' && (
+					<>
+						<h1>TODOs</h1>
+						{data!.map(post => (
+							<PostContainer key={post.id}>{post.title}</PostContainer>
+						))}
+					</>
+				)}
 			</Main>
 			<Footer />
 		</>
