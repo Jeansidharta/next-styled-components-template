@@ -8,7 +8,6 @@ import Button from '../../components/reusable/button';
 import { useModal } from '../../contexts/modal';
 import TestModal from '../../components/modals/test-modal';
 import { deployedURLHome } from '../../constants/deployed-url';
-import Select from '../../components/reusable/select';
 import { useFetchTodos } from '../../api/todos';
 
 const Main = styled.div`
@@ -64,17 +63,6 @@ export default function Home() {
 				<Button isLoading={status === 'LOADING'} onClick={() => fetchTodos()}>
 					Fetch Todos
 				</Button>
-				<Select
-					style={{ marginTop: 32 }}
-					label="Batata"
-					options={[
-						'Select Option 1',
-						'Select Option 2',
-						'Select Option 3',
-						'Select Option 4',
-						'Select Option 5',
-					]}
-				/>
 				{status === 'DONE' && (
 					<>
 						<h1>TODOs</h1>

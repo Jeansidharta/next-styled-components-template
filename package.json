@@ -20,21 +20,21 @@
 		"upgrade": "npx npm-check-updates --upgrade --reject husky && npx npm-check-updates --filter husky --target minor"
 	},
 	"dependencies": {
-		"next": "^11.0.1",
+		"next": "^11.1.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-toastify": "^7.0.4",
-		"styled-components": "^5.3.0"
+		"styled-components": "^5.3.1"
 	},
 	"devDependencies": {
-		"@types/node": "^16.4.10",
-		"@types/react": "^17.0.15",
-		"@types/styled-components": "^5.1.11",
+		"@types/node": "^16.7.2",
+		"@types/react": "^17.0.19",
+		"@types/styled-components": "^5.1.13",
 		"babel-plugin-styled-components": "^1.13.2",
 		"file-loader": "^6.2.0",
 		"husky": "^4.3.8",
 		"imagemin-webp-webpack-plugin": "^3.3.6",
-		"lighthouse": "^8.2.0",
+		"lighthouse": "^8.3.0",
 		"prettier": "^2.3.2",
 		"pretty-quick": "^3.1.1",
 		"serve": "^12.0.0",

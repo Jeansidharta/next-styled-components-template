@@ -29,7 +29,7 @@ const Image = styled.img<{ fit: string }>`
 `;
 
 type BaseImageProps = React.PropsWithChildren<{
-	src: string;
+	imageData: StaticImageData;
 	alt: string;
 	css?: FlattenSimpleInterpolation;
 	fit?:
@@ -50,7 +50,7 @@ type BaseImageProps = React.PropsWithChildren<{
  * and will automaticaly handle webp sources.
  */
 const BaseImage = React.forwardRef<HTMLPictureElement, BaseImageProps>(
-	({ src, alt, fit = `contain`, ...props }, ref) => {
+	({ imageData: { src }, alt, fit = `contain`, ...props }, ref) => {
 		const webpSrc = src.match(hasWebpCounterpartRegex)
 			? src.replace(hasWebpCounterpartRegex, `.webp`)
 			: ``;
@@ -67,7 +67,7 @@ const BaseImage = React.forwardRef<HTMLPictureElement, BaseImageProps>(
 const Images = {
 	/** Here's an image import example. Just copy and paste it with the correct import path. */
 	main: styled(BaseImage).attrs(({ alt }) => ({
-		src: ImageURLs.logo,
+		imageData: ImageURLs.logo,
 		alt: alt || `My Company Logo`,
 	}))``,
 };
