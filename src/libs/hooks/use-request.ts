@@ -31,7 +31,7 @@ export type RequestState<Data> = {
 	error: ErrorDetails<Data> | null;
 };
 
-export type FetchMethod = 'GET' | 'PATCH' | 'POST';
+export type FetchMethod = 'GET' | 'PATCH' | 'POST' | 'OPTIONS';
 
 function generateRequestHeaders(
 	body: Record<any, any> | undefined,
@@ -57,6 +57,16 @@ function serializeBodyForRequest(body: unknown) {
 	return (body as any).toString() as string;
 }
 
+function canFetchMethodHaveBody(method: FetchMethod) {
+	switch (method) {
+		case 'GET':
+		case 'OPTIONS':
+			return false;
+		default:
+			return true;
+	}
+}
+
 export function useRequest<Data>(url: string, method: FetchMethod) {
 	const [requestStatus, setRequestStatus] = React.useState<RequestState<Data>>({
 		status: 'NOT_SENT',
@@ -66,6 +76,9 @@ export function useRequest<Data>(url: string, method: FetchMethod) {
 
 	const makeRequest = React.useCallback(
 		async (body?: Record<any, any>, additionalHeaders: Record<string, string> = {}) => {
+			if (!canFetchMethodHaveBody(method) && body) {
+				throw new Error(`You cannot send a body with a request of method '${method}'`);
+			}
 			setRequestStatus({ data: null, error: null, status: 'LOADING' });
 			let response: Response;
 			try {
@@ -73,6 +86,7 @@ export function useRequest<Data>(url: string, method: FetchMethod) {
 					method,
 					headers: generateRequestHeaders(body, additionalHeaders),
 					body: serializeBodyForRequest(body),
+					credentials: 'include', // Allow for cookies to be sent along the request
 				});
 			} catch (errorObject) {
 				const errorDetails: ErrorDetails<Data> = {
