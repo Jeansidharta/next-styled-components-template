@@ -88,7 +88,7 @@ export function useRequest<Data>(url: string, method: FetchMethod) {
 					body: serializeBodyForRequest(body),
 					credentials: 'include', // Allow for cookies to be sent along the request
 				});
-			} catch (errorObject) {
+			} catch (errorObject: any) {
 				const errorDetails: ErrorDetails<Data> = {
 					errorType: 'NO_RESPONSE',
 					serverResponse: null,
@@ -105,7 +105,7 @@ export function useRequest<Data>(url: string, method: FetchMethod) {
 			if (response.headers.get('content-type')?.startsWith('application/json')) {
 				try {
 					serverResponse = (await response.json()) as Data;
-				} catch (errorObject) {
+				} catch (errorObject: any) {
 					const errorDetails: ErrorDetails<Data> = {
 						errorType: 'INVALID_JSON',
 						serverResponse: null,
@@ -118,7 +118,7 @@ export function useRequest<Data>(url: string, method: FetchMethod) {
 			} else {
 				try {
 					serverResponse = (await response.text()) as any as Data;
-				} catch (errorObject) {
+				} catch (errorObject: any) {
 					const errorDetails: ErrorDetails<Data> = {
 						errorType: 'RESPONSE_UNPARSEABLE',
 						serverResponse: null,
