@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.button`
@@ -23,18 +23,15 @@ const Root = styled.button`
 	}
 `;
 
-type FloatIconButtonProps = React.PropsWithoutRef<{
-	imageElem: React.ReactNode;
-}> &
-	React.ComponentProps<'button'>;
-
-type FloatIconButtonComponent = React.FunctionComponent<FloatIconButtonProps>;
-
 /**
  * This is more of a visual component. It will render the `imageElem` prop on it's center,
  * with some shadow around it. It's supposed to be a simple icon.
  */
-const FloatIconButton: FloatIconButtonComponent = ({ imageElem, ref, ...props }) => {
+const FloatIconButton: FC<
+	{
+		imageElem: React.ReactNode;
+	} & React.ComponentProps<'button'>
+> = ({ imageElem, ref, ...props }) => {
 	return <Root {...props}>{imageElem}</Root>;
 };
 

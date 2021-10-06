@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Modal from './modal';
-
-type ServicesComponent = React.FunctionComponent;
 
 /**
  * A place to group together all your services.
  */
-const Services: ServicesComponent = () => {
+const Services: FC<{}> = () => {
 	return <Modal />;
 };
 

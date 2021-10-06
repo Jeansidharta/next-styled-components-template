@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -32,11 +32,7 @@ const Anchor = styled.a.attrs({ href: `#` })`
 	max-width: 80px;
 `;
 
-type NavbarProps = React.PropsWithoutRef<{}>;
-
-type NavbarComponent = React.FunctionComponent<NavbarProps>;
-
-const Navbar: NavbarComponent = () => {
+const Navbar: FC<{}> = () => {
 	const linksContainerRef = React.useRef<HTMLUListElement>(null);
 
 	const links = [

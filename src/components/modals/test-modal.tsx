@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useModal } from '../../contexts/modal';
 import Button from '../reusable/button';
@@ -7,9 +7,7 @@ import Select from '../reusable/select';
 
 const Root = styled(Card)``;
 
-type TestModalComponent = React.FunctionComponent;
-
-const TestModal: TestModalComponent = ({}) => {
+const TestModal: FC<{}> = ({}) => {
 	const { closeModal } = useModal();
 
 	return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Svg = styled.svg<{ size: number }>`
@@ -26,23 +26,20 @@ const Circle = styled.circle<{
 	transform-origin: 50% 50% 0;
 `;
 
-type SpinnerProps = React.PropsWithRef<{
-	/** The radius of the spinner in pixels. Default is 40. */
-	size?: number;
-	/** The width (thickness) of the spinner's outline. Default is 2. */
-	strokeWidth?: number;
-	/** The spinner's color. Default is black. */
-	color?: string;
-}> &
-	Omit<React.ComponentProps<'svg'>, 'ref'>;
-
-type SpinnerComponent = React.FunctionComponent<SpinnerProps>;
-
 /**
  * This is a spinner component. It is often use to indicate to the user that a
  * server request is being made.
  */
-const Spinner: SpinnerComponent = ({ size = 20, strokeWidth = 2, color = `black`, ...props }) => {
+const Spinner: FC<
+	{
+		/** The radius of the spinner in pixels. Default is 40. */
+		size?: number;
+		/** The width (thickness) of the spinner's outline. Default is 2. */
+		strokeWidth?: number;
+		/** The spinner's color. Default is black. */
+		color?: string;
+	} & Omit<React.ComponentProps<'svg'>, 'ref'>
+> = ({ size = 20, strokeWidth = 2, color = `black`, ...props }) => {
 	const animation = React.useRef(keyframes`
 		0% {
 			stroke-dashoffset: ${0.66 * size};

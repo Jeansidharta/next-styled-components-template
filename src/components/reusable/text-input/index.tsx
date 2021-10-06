@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -36,26 +36,23 @@ const LabelText = styled.span`
 
 const TextArea = styled(Input).attrs({ as: `textarea` })``;
 
-type TextInputProps = React.PropsWithoutRef<{
-	/** The text that indicates the field's name */
-	label: string;
-	numberOfLines?: number;
-	inputProps?: Omit<React.ComponentProps<'input'>, 'ref'>;
-	labelProps?: Omit<React.ComponentProps<'span'>, 'ref'>;
-	name?: string;
-	type?: string;
-	onChange?: (newValue: string) => void;
-	inputRef?: React.RefObject<HTMLInputElement>;
-	defaultValue?: string;
-}> &
-	Omit<React.ComponentPropsWithoutRef<'label'>, 'onChange' | 'defaultValue'>;
-
-type TextInputComponent = React.FunctionComponent<TextInputProps>;
-
 /**
  * This is the application's default text input component
  */
-const TextInput: TextInputComponent = ({
+const TextInput: FC<
+	{
+		/** The text that indicates the field's name */
+		label: string;
+		numberOfLines?: number;
+		inputProps?: Omit<React.ComponentProps<'input'>, 'ref'>;
+		labelProps?: Omit<React.ComponentProps<'span'>, 'ref'>;
+		name?: string;
+		type?: string;
+		onChange?: (newValue: string) => void;
+		inputRef?: React.RefObject<HTMLInputElement>;
+		defaultValue?: string;
+	} & Omit<React.ComponentPropsWithoutRef<'label'>, 'onChange' | 'defaultValue'>
+> = ({
 	label,
 	numberOfLines = 1,
 	inputProps,

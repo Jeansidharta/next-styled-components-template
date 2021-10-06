@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.li`
@@ -23,15 +23,12 @@ const Anchor = styled.a`
 	border-radius: 8px;
 `;
 
-type NavLinkProps = React.PropsWithChildren<{
-	/** The ID of the document object to scroll to */
-	idToFocus: string;
-}> &
-	React.ComponentProps<'li'>;
-
-type NavLinkComponent = React.FunctionComponent<NavLinkProps>;
-
-const NavLink: NavLinkComponent = ({ idToFocus, children, ref, onClick, ...props }) => {
+const NavLink: FC<
+	{
+		/** The ID of the document object to scroll to */
+		idToFocus: string;
+	} & React.ComponentProps<'li'>
+> = ({ idToFocus, children, ref, onClick, ...props }) => {
 	return (
 		<Root onClick={onClick} {...props}>
 			<Anchor href="#">{children}</Anchor>

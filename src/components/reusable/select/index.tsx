@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useEffectUpdate } from '../../../libs/hooks/use-effect-update';
 import { useDocumentBodyEvent } from '../../../libs/hooks/use-global-event';
@@ -53,20 +53,17 @@ const OptionsContainer = styled.div`
 	z-index: 1;
 `;
 
-type SelectProps = React.PropsWithoutRef<{
-	options: Option[];
-	onChange?: (newValue: string | null) => void;
-	widthMode?: 'largest-option' | 'min-width';
-	label?: string;
-	initialValue?: string | null;
-	disabled?: boolean;
-	maxOptionsContainerHeight?: number;
-}> &
-	Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'>;
-
-type SelectComponent = React.FunctionComponent<SelectProps>;
-
-const Select: SelectComponent = ({
+const Select: FC<
+	{
+		options: Option[];
+		onChange?: (newValue: string | null) => void;
+		widthMode?: 'largest-option' | 'min-width';
+		label?: string;
+		initialValue?: string | null;
+		disabled?: boolean;
+		maxOptionsContainerHeight?: number;
+	} & Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'>
+> = ({
 	options,
 	onChange = () => {},
 	label,

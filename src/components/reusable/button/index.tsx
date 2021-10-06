@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import type { DefaultTheme } from 'styled-components';
 import styled from 'styled-components';
 import SpinnerTemplate from '../spinner';
@@ -39,31 +39,28 @@ const Spinner = styled(SpinnerTemplate)`
 	margin-left: 8px;
 `;
 
-type ButtonProps = React.PropsWithChildren<{
-	/**
-	 * How much will the button's size increase/decrease when the user hovers/clicks
-	 * on it.
-	 */
-	hoverScaleOffset?: number;
-
-	backgroundColor?: ColorDescriptor;
-
-	textColor?: ColorDescriptor;
-
-	/**
-	 * If true, the button's width will be set to `100%`.
-	 */
-	fullWidth?: boolean;
-
-	/** Whether the button should show a spinner icon */
-	isLoading?: boolean;
-}> &
-	React.ComponentProps<'button'>;
-
-type ButtonComponent = React.FunctionComponent<ButtonProps>;
-
 /** This is the application's default button. */
-const Button: ButtonComponent = ({
+const Button: FC<
+	{
+		/**
+		 * How much will the button's size increase/decrease when the user hovers/clicks
+		 * on it.
+		 */
+		hoverScaleOffset?: number;
+
+		backgroundColor?: ColorDescriptor;
+
+		textColor?: ColorDescriptor;
+
+		/**
+		 * If true, the button's width will be set to `100%`.
+		 */
+		fullWidth?: boolean;
+
+		/** Whether the button should show a spinner icon */
+		isLoading?: boolean;
+	} & React.ComponentProps<'button'>
+> = ({
 	fullWidth = false,
 	hoverScaleOffset = 0.1,
 	backgroundColor = (theme: DefaultTheme) => theme.colors.action.main,

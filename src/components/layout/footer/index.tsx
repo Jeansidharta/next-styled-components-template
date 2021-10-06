@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.div`
@@ -10,11 +10,7 @@ const Root = styled.div`
 	box-shadow: ${props => props.theme.shadows.layout.large.strong.normal};
 `;
 
-type FooterProps = React.PropsWithoutRef<{}>;
-
-type FooterComponent = React.FunctionComponent<FooterProps>;
-
-const Footer: FooterComponent = () => {
+const Footer: FC<{}> = () => {
 	return (
 		<Root>
 			<p>Footer component</p>
