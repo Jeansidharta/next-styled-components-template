@@ -20,7 +20,7 @@ const Main = styled.div`
 
 const PostContainer = styled.p`
 	padding: 8px;
-	border-radius: 8px;
+	border-radius: 4px;
 	box-shadow: ${props => props.theme.shadows.button.medium.normal};
 `;
 

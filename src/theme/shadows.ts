@@ -47,19 +47,19 @@ export const DefaultThemeShadows = {
 	},
 	button: {
 		small: {
-			hover: `-3px 3px 3px rgba(0, 0, 0, 0.1)`,
-			normal: `-2px 2px 2px rgba(0, 0, 0, 0.2)`,
-			active: `-1px 1px 1px rgba(0, 0, 0, 0.4)`,
+			hover: `-2px 2px 2px rgba(0, 0, 0, 0.1)`,
+			normal: `-1px 1px 1px rgba(0, 0, 0, 0.2)`,
+			active: `-0px 0px 0px rgba(0, 0, 0, 0.4)`,
 		},
 		medium: {
-			hover: `-3px 3px 3px rgba(0, 0, 0, 0.3)`,
+			hover: `-5px 5px 5px rgba(0, 0, 0, 0.2)`,
 			normal: `-3px 3px 3px rgba(0, 0, 0, 0.3)`,
-			active: `-3px 3px 3px rgba(0, 0, 0, 0.3)`,
+			active: `-1px 1px 1px rgba(0, 0, 0, 0.4)`,
 		},
 		large: {
-			hover: `-2px 2px 4px rgba(0, 0, 0, 0.2)`,
-			normal: `-2px 2px 4px rgba(0, 0, 0, 0.2)`,
-			active: `-2px 2px 4px rgba(0, 0, 0, 0.2)`,
+			hover: `-12px 12px 12px rgba(0, 0, 0, 0.2)`,
+			normal: `-6px 6px 6px rgba(0, 0, 0, 0.2)`,
+			active: `-3px 3px 3px rgba(0, 0, 0, 0.2)`,
 		},
 	},
 } as DefaultThemeShadows;

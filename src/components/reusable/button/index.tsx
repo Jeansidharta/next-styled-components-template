@@ -18,10 +18,10 @@ const Root = styled.button<{
 	display: flex;
 	justify-content: center;
 	border: 0;
-	outline: 0;
 	transition: 200ms;
 	cursor: pointer;
-	border-radius: 8px;
+	border-radius: 4px;
+	box-shadow: ${props => props.theme.shadows.button.medium.normal};
 	background-color: ${({ backgroundColor, theme }) =>
 		typeof backgroundColor === `string` ? backgroundColor : backgroundColor(theme)};
 	color: ${({ textColor, theme }) =>
@@ -29,9 +29,11 @@ const Root = styled.button<{
 	:hover,
 	:focus {
 		transform: scale(${({ hoverScaleOffset }) => 1 + hoverScaleOffset});
+		box-shadow: ${props => props.theme.shadows.button.medium.hover};
 	}
 	:active {
 		transform: scale(${({ hoverScaleOffset }) => 1 - hoverScaleOffset});
+		box-shadow: ${props => props.theme.shadows.button.medium.active};
 	}
 `;
 
