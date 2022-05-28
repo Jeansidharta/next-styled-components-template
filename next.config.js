@@ -26,4 +26,9 @@ module.exports = {
 		config.plugins.push(new ImageminWebpWebpackPlugin());
 		return config;
 	},
+
+	compiler: {
+		// ssr and displayName are configured by default
+		styledComponents: true,
+	},
 };
