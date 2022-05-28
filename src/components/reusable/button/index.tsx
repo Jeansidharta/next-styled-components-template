@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import type { DefaultTheme } from 'styled-components';
 import styled from 'styled-components';
 import SpinnerTemplate from '../spinner';
@@ -43,7 +43,7 @@ const Spinner = styled(SpinnerTemplate)`
 
 /** This is the application's default button. */
 const Button: FC<
-	{
+	PropsWithChildren<{
 		/**
 		 * How much will the button's size increase/decrease when the user hovers/clicks
 		 * on it.
@@ -61,7 +61,8 @@ const Button: FC<
 
 		/** Whether the button should show a spinner icon */
 		isLoading?: boolean;
-	} & React.ComponentProps<'button'>
+	}> &
+		React.ComponentProps<'button'>
 > = ({
 	fullWidth = false,
 	hoverScaleOffset = 0.1,

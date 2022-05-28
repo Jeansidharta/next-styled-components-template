@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.div`
@@ -11,7 +11,7 @@ const Root = styled.div`
  * but you can declare `styled-components`'s components here. It's useful to add styles that
  * should be applied to the whole application, or setting up the page's container in a specific
  * way. */
-const AppContainer: FC<{}> = ({ children }) => {
+const AppContainer: FC<PropsWithChildren<{}>> = ({ children }) => {
 	return <Root>{children}</Root>;
 };
 
